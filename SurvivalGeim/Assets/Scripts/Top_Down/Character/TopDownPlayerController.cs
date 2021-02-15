@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class TopDownPlayerController : TopDownMovementController
 {
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    public static TopDownPlayerController Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    public void UpdateSpriteLayer(int layer)
+    {
+        spriteRenderer.sortingOrder = layer;
+    }
     private void Update()
     {
         float verticalDirection = Input.GetAxisRaw("Vertical");

@@ -10,7 +10,7 @@ public class TilemapHeightManager : MonoBehaviour
 {
     public static TilemapHeightManager Instance { get; private set; }
     [SerializeField]
-    private List<TilemapHeightData> tilemapHeightDatas = new List<TilemapHeightData>();
+    private List<TilemapHeightContainer> tilemapContainers = new List<TilemapHeightContainer>();
     [SerializeField]
     private int currentHeightLevel = 0;
 
@@ -27,9 +27,9 @@ public class TilemapHeightManager : MonoBehaviour
     }
     private void Start()
     {
-        foreach(TilemapHeightData data in tilemapHeightDatas)
+        foreach (TilemapHeightContainer data in tilemapContainers)
         {
-            data.Init();
+            data.Init(currentHeightLevel);
         }
     }
     public void ChangeLevelHeight(HeightChangeType direction)
@@ -48,9 +48,47 @@ public class TilemapHeightManager : MonoBehaviour
     }
     private void UpdateTilemap()
     {
+        foreach (TilemapHeightContainer data in tilemapContainers)
+        {
+            if(data.HeightLevel == currentHeightLevel)
+            {
+                TopDownPlayerController.Instance.UpdateSpriteLayer(data.SetPlayerLayerTo);
+            }
+            data.SetColliderStates(currentHeightLevel);
+        }
+    }
+}
+
+[Serializable]
+public class TilemapHeightContainer
+{
+    [SerializeField]
+    private string maplevelName = "";
+    [SerializeField]
+    private int setPlayerLayerTo = 0;
+    [SerializeField]
+    private int heightLevel = 0;
+    [SerializeField]
+    private List<TilemapHeightData> tilemapHeightDatas = new List<TilemapHeightData>();
+
+    public int HeightLevel => heightLevel;
+    public int SetPlayerLayerTo => setPlayerLayerTo;
+
+    public List<TilemapHeightData> TilemapHeightDatas => tilemapHeightDatas;
+
+    public void Init(int currentHeight)
+    {
+        foreach (TilemapHeightData data in tilemapHeightDatas)
+        {
+            data.Init(currentHeight, heightLevel);
+        }
+    }
+
+    public void SetColliderStates(int currentHeight)
+    {
         foreach(TilemapHeightData data in tilemapHeightDatas)
         {
-            data.SetColliderStates(data.HeightLevel == currentHeightLevel);
+            data.SetColliderStates(currentHeight, heightLevel);
         }
     }
 }
@@ -58,23 +96,47 @@ public class TilemapHeightManager : MonoBehaviour
 [Serializable]
 public class TilemapHeightData
 {
+    [Header("Main data")]
     [SerializeField]
     private Tilemap tilemap;
+
+    [Header("Conditions")]
     [SerializeField]
-    private int heightLevel = 0;
+    private Vector2 disableObjectInRange = Vector2.zero;
+    [SerializeField]
+    private Vector2 disableColliderInRange = Vector2.zero;
+    [SerializeField]
+    private bool canEffectCollider = true;
+    [SerializeField]
+    private bool canEffectObject = true;
+
+    [Header("Tilemap colliders")]
     [SerializeField]
     private List<Collider2D> collider2Ds = new List<Collider2D>();
 
-    public int HeightLevel => heightLevel;
-    public void Init()
+
+    public void Init(int currentHeight, int levelHeight)
     {
         collider2Ds = tilemap.GetComponents<Collider2D>().ToList();
+        SetColliderStates(currentHeight, levelHeight);
     }
-    public void SetColliderStates(bool state)
+    public void SetColliderStates(int currentHeight, int levelHeight)
     {
-        foreach(Collider2D collider in collider2Ds)
+        int distance = currentHeight - levelHeight;
+        bool state = levelHeight == currentHeight;
+
+        if (canEffectObject)
         {
-            collider.enabled = state;
+            bool objectState = distance >= disableObjectInRange.x && distance <= disableObjectInRange.y;
+            tilemap.gameObject.SetActive(state || objectState);
+        }
+        if (canEffectCollider)
+        {
+            bool colliderState = distance >= disableColliderInRange.x && distance <= disableColliderInRange.y;
+            foreach (Collider2D collider in collider2Ds)
+            {
+                collider.enabled = state || colliderState;
+            }
         }
     }
 }
