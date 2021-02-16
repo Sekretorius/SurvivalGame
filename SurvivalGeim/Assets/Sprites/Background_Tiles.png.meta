@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: e71699bb0ff1576438b1023d42633427
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1709255038517498567
+    second: Background_Tiles_0
+  - first:
+      213: 5216064096687804048
+    second: Background_Tiles_1
+  - first:
+      213: 7175828628889151703
+    second: Background_Tiles_2
+  - first:
+      213: 5866807704811538430
+    second: Background_Tiles_3
+  - first:
+      213: 144745103143614656
+    second: Background_Tiles_4
+  - first:
+      213: 725451931218562568
+    second: Background_Tiles_5
+  - first:
+      213: -1829759767238033640
+    second: Background_Tiles_6
+  - first:
+      213: -5826446347412401882
+    second: Background_Tiles_7
+  - first:
+      213: -7489785697302604593
+    second: Background_Tiles_8
+  - first:
+      213: 7508747074462573279
+    second: Background_Tiles_9
+  - first:
+      213: -1534269439300310925
+    second: Background_Tiles_10
+  - first:
+      213: -5140212320243625933
+    second: Background_Tiles_11
+  - first:
+      213: -8060959402506372494
+    second: Background_Tiles_12
+  - first:
+      213: -8449570524431738559
+    second: Background_Tiles_13
+  - first:
+      213: 2114011068205917547
+    second: Background_Tiles_14
+  - first:
+      213: -5899399696405274544
+    second: Background_Tiles_15
+  - first:
+      213: -7635523833272765186
+    second: Background_Tiles_16
+  - first:
+      213: -7546771056014604706
+    second: Background_Tiles_17
+  - first:
+      213: 7054636813770237770
+    second: Background_Tiles_18
+  - first:
+      213: 772858449202297668
+    second: Background_Tiles_19
+  - first:
+      213: 3640922738134552405
+    second: Background_Tiles_20
+  - first:
+      213: 3365360924873586604
+    second: Background_Tiles_21
+  - first:
+      213: -5053542106496647493
+    second: Background_Tiles_22
+  - first:
+      213: -5198860811483046723
+    second: Background_Tiles_23
+  - first:
+      213: -3793973806627752359
+    second: Background_Tiles_24
+  - first:
+      213: -9125266393259937773
+    second: Background_Tiles_25
+  - first:
+      213: -1142137137490474583
+    second: Background_Tiles_26
+  - first:
+      213: 5373491914041991077
+    second: Background_Tiles_27
+  - first:
+      213: 7955593467815250641
+    second: Background_Tiles_28
+  - first:
+      213: 1387614192659927639
+    second: Background_Tiles_29
+  - first:
+      213: 4704197393686621270
+    second: Background_Tiles_30
+  - first:
+      213: 2874363950014462619
+    second: Background_Tiles_31
+  - first:
+      213: -695594536942106259
+    second: Background_Tiles_32
+  - first:
+      213: -4128987503085035805
+    second: Background_Tiles_33
+  - first:
+      213: 2855148723018574102
+    second: Background_Tiles_34
+  - first:
+      213: -287086192510016824
+    second: Background_Tiles_35
+  - first:
+      213: 8015666029821034063
+    second: Background_Tiles_36
+  - first:
+      213: -2426722418190581614
+    second: Background_Tiles_37
+  - first:
+      213: -2751048348487222312
+    second: Background_Tiles_38
+  - first:
+      213: -6303996470284998710
+    second: Background_Tiles_39
+  - first:
+      213: -2021546541921929934
+    second: Background_Tiles_40
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Background_Tiles_0
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 528
+        width: 88
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2d169c66e78b710800000000000000
+      internalID: 1709255038517498567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_1
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 542
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09eceb8f8ae236840800000000000000
+      internalID: 5216064096687804048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_2
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 498
+        width: 90
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8240a6e1aa59360800000000000000
+      internalID: 7175828628889151703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_3
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 510
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef701da16861b6150800000000000000
+      internalID: 5866807704811538430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_4
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 483
+        width: 72
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c83ad787ec320200800000000000000
+      internalID: 144745103143614656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_5
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 492
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80e47e510b2511a00800000000000000
+      internalID: 725451931218562568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_6
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 465
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fb979af236b96e0800000000000000
+      internalID: -1829759767238033640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_7
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 449
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6219c97baed442fa0800000000000000
+      internalID: -5826446347412401882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 449
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc41a74479fee0890800000000000000
+      internalID: -7489785697302604593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_9
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 465
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd268916ead643860800000000000000
+      internalID: 7508747074462573279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_10
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 465
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37864c8e21e25bae0800000000000000
+      internalID: -1534269439300310925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 374
+        width: 352
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330dac5f02c4aa8b0800000000000000
+      internalID: -5140212320243625933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 447
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a33c8d128b12090800000000000000
+      internalID: -8060959402506372494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 447
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14992a230681dba80800000000000000
+      internalID: -8449570524431738559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 429
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6568a3bdd9765d10800000000000000
+      internalID: 2114011068205917547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 431
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05067b38b3f112ea0800000000000000
+      internalID: -5899399696405274544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_16
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 429
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef47fb3478b290690800000000000000
+      internalID: -7635523833272765186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_17
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 411
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56cc0585bb744790800000000000000
+      internalID: -7546771056014604706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_18
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 413
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a472b281eca17e160800000000000000
+      internalID: 7054636813770237770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_19
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 413
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44bbc5e2aaeb9ba00800000000000000
+      internalID: 772858449202297668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_20
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 411
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f072d90f7278230800000000000000
+      internalID: 3640922738134552405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_21
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 377
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca7f1144ee924be20800000000000000
+      internalID: 3365360924873586604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_22
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 393
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbeb9cc9a363ed9b0800000000000000
+      internalID: -5053542106496647493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_23
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 395
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc9adef2afe9d7b0800000000000000
+      internalID: -5198860811483046723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_24
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 393
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956f0d89ce8195bc0800000000000000
+      internalID: -3793973806627752359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_25
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 382
+        width: 39
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3107ee4209a8c5180800000000000000
+      internalID: -9125266393259937773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_26
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 359
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a9491323505620f0800000000000000
+      internalID: -1142137137490474583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_27
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 359
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af18e30d6a729a40800000000000000
+      internalID: 5373491914041991077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_28
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 359
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dacb82cb12f76e60800000000000000
+      internalID: 7955593467815250641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_29
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 341
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75219ce91cbc14310800000000000000
+      internalID: 1387614192659927639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_30
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 341
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c620c0b9aa84140800000000000000
+      internalID: 4704197393686621270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_31
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 307
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9afcc398cac3e720800000000000000
+      internalID: 2874363950014462619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_32
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 323
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d690ddd3470c856f0800000000000000
+      internalID: -695594536942106259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_33
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 323
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eed6940eb3e2b6c0800000000000000
+      internalID: -4128987503085035805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_34
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 305
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619ae68e2a68f9720800000000000000
+      internalID: 2855148723018574102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_35
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 305
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2658301a0140cf0800000000000000
+      internalID: -287086192510016824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_36
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 289
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4ef5a909cd5d3f60800000000000000
+      internalID: 8015666029821034063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 188
+        width: 352
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 290064761dc825ed0800000000000000
+      internalID: -2426722418190581614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_38
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 271
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db7e7c4a1052d9d0800000000000000
+      internalID: -2751048348487222312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 320
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7a85b3c94b388a0800000000000000
+      internalID: -6303996470284998710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_Tiles_40
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 10
+        width: 320
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235f2d7712602f3e0800000000000000
+      internalID: -2021546541921929934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

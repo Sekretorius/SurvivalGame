@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - GroundGround
   - IgnoreGround
+  - Spawn
   layers:
   - Default
   - TransparentFX
