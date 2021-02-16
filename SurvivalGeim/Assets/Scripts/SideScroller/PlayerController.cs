@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float gavityScale = 2f;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
 
     Vector2 movement;
 
@@ -32,6 +37,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("IgnoreGround"));
+        currentHealth = maxHealth;
+
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -41,7 +49,7 @@ public class PlayerController : MonoBehaviour
             JumpDetected();
 
         if (jumped)
-        {
+        {            
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
                 moveVelocity = -moveSpeed;
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
@@ -62,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpDetected()
     {
+        TakeDamage(10);
         body.gravityScale = gavityScale;
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         JHeight = body.position.y;
@@ -82,6 +91,13 @@ public class PlayerController : MonoBehaviour
     {
         if(!jumped)
             body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 
 }
