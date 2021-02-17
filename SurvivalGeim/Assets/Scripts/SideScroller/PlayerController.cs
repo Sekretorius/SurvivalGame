@@ -18,12 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float gavityScale = 2f;
 
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    public HealthBar healthBar;
-
-
     Vector2 movement;
 
     // Jumping
@@ -47,9 +41,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("IgnoreGround"));
-        currentHealth = maxHealth;
-
-        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -82,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpDetected()
     {
-        TakeDamage(10);
+        PlayerManager.instance.TakeDamage(10);
         body.gravityScale = gavityScale;
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         JHeight = body.position.y;
@@ -125,11 +116,4 @@ public class PlayerController : MonoBehaviour
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 	}
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        healthBar.SetHealth(currentHealth);
-    }
-
 }
