@@ -13,7 +13,10 @@ public class SceneLoader : MonoBehaviour
     void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(instance);
+        }
         else
             Destroy(this);
     }
@@ -30,33 +33,47 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator Transition(string scene)
     {
-        int transitionSpeed = 30;
+        int transitionSpeed = 3000 / 50;
+
+        if (TopDownPlayerController.Instance != null)
+        {
+            circle.transform.position = Camera.main.WorldToScreenPoint(TopDownPlayerController.Instance.transform.position);
+            // Other controller movement stop
+        }
+        else
+        {
+            circle.transform.position = Camera.main.WorldToScreenPoint(PlayerController.instance.transform.position);
+            PlayerController.instance.Block();
+        }
 
         while (circle.sizeDelta.x >= 0)
         {
             circle.sizeDelta = new Vector2(circle.sizeDelta.x - transitionSpeed, circle.sizeDelta.y - transitionSpeed);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
-
-        // yield return new WaitForSeconds(2);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
 
-        //while (asyncLoad.isDone == false)
-        //{
-        //    float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+        while (asyncLoad.isDone == false)
+            yield return null;
 
-        //    circle.sizeDelta = new Vector2(3000 * progress, 3000 * progress);
+        CutoutMaskUI.instance.SetMaterial(); // Refresh mat
+        CameraFollow.instance.RefreshPosition(); // camera pos
+        PlayerController.instance.Block(); // block movement
 
-        //    yield return null;
-
-        //}
+        if (TopDownPlayerController.Instance != null)
+            circle.transform.position = Camera.main.WorldToScreenPoint(TopDownPlayerController.Instance.transform.position);
+        else
+            circle.transform.position = Camera.main.WorldToScreenPoint(PlayerController.instance.transform.position);
 
         while (circle.sizeDelta.x < 3000)
         {
-            circle.sizeDelta = new Vector2(circle.sizeDelta.x + 15, circle.sizeDelta.y + 15);
-            yield return null;
+            circle.sizeDelta = new Vector2(circle.sizeDelta.x + transitionSpeed, circle.sizeDelta.y + transitionSpeed);
+            yield return new WaitForFixedUpdate();
         }
+
+        PlayerController.instance.Unblock();
+        // Other controller movement unstop
 
     }
 

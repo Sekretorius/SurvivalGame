@@ -4,9 +4,12 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController instance;
+
     // Movement
     float moveVelocity;
 
+    public bool block = false;
 
     [SerializeField]
     public float moveSpeed = 5f;
@@ -18,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     Vector2 movement;
 
-
     // Jumping
     bool jumped = false;
     public float JHeight;
@@ -29,6 +31,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public CompositeCollider2D groundCollider;
 
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
+
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("IgnoreGround"));
@@ -36,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (block)
+            return;
         //Jumping
         if (Input.GetKeyDown(KeyCode.Space) && !jumped)
             JumpDetected();
@@ -80,8 +92,29 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!jumped)
+        if (block)
+            return;
+
+        if (!jumped)
             body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void Block()
+    {
+        if (this != null)
+        {
+            block = true;
+            body.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+    public void Unblock()
+    {
+        if (this != null) 
+        { 
+            block = false;
+            body.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
 }

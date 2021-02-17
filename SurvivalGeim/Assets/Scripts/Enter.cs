@@ -29,8 +29,11 @@ public class Enter : MonoBehaviour
                 return;
             }
 
-            //SceneLoader.instance.ChangeScene(scene);
-            SceneManager.LoadSceneAsync(sceneList.IndexOf(scene), LoadSceneMode.Single);
+            SceneLoader.instance.ChangeScene(scene);
+
+            // for some reason
+
+            //SceneManager.LoadSceneAsync(sceneList.IndexOf(scene), LoadSceneMode.Single);
             EnterManager.instance.playerPos = SpawnPosition;
         }
     }

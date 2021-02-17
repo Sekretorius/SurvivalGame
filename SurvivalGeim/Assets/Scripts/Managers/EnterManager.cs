@@ -14,14 +14,18 @@ public class EnterManager : MonoBehaviour
     void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(instance);
+        }
         else
             Destroy(this);
     }
 
     public void Exit()
     {
-        SceneManager.LoadSceneAsync("Main",LoadSceneMode.Single);
+        SceneLoader.instance.ChangeScene("Main");
+        //SceneManager.LoadSceneAsync("Main",LoadSceneMode.Single);
     }
 }
 
@@ -36,6 +40,7 @@ public class ListToPopupAttribute : PropertyAttribute
     }
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ListToPopupAttribute))]
 public class ListToPopupDrawer : PropertyDrawer
 {
@@ -59,3 +64,5 @@ public class ListToPopupDrawer : PropertyDrawer
             EditorGUI.PropertyField(position,property,label);
     }
 }
+
+#endif
