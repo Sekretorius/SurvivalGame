@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class Coin : MonoBehaviour
 {
     [SerializeField]
-    [Range(0, 100)]
-    private float value;
+    private int minValue = 1;
+    [SerializeField]
+    private int maxValue = 50;
+    private int value;    
 
     [SerializeField]
     [TextArea]
@@ -36,6 +38,8 @@ public class Coin : MonoBehaviour
         }
         if (collision.collider.name.Equals("Player"))
         {
+            value = Random.Range(minValue, maxValue);
+            PlayerManager.instance.ChangeMoney(value);
             isPicked = true;
             Debug.Log(textOnPick);
             textField.gameObject.SetActive(true);

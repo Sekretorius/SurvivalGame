@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     public int maxHealth = 100;
+    public int money = 0;
     public int currentHealth;
 
     void Awake()
@@ -26,5 +27,11 @@ public class PlayerManager : MonoBehaviour
     {
         currentHealth -= damage;
         HealthBar.instance.SetHealth(currentHealth);
+    }
+
+    public void ChangeMoney(int sum)
+    {
+        money += sum;
+        MoneyUI.instance.SetMoney(money);
     }
 }
