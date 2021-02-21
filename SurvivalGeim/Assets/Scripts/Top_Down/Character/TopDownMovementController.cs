@@ -11,12 +11,7 @@ public class TopDownMovementController : MonoBehaviour
     private float runSpeed = 3f;
 
     private const float colliderCheckOffset = .01f;
-    private const float colliderForce = 0.5f;
     private BoxCollider2D boxCollider;
-    private void Start()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
     private float currentSpeed
     {
         get
@@ -28,17 +23,41 @@ public class TopDownMovementController : MonoBehaviour
         }
     }
 
+
     protected Vector2 moveAxis = Vector2.zero;
     protected bool isRunnig = false;
+    protected bool isMovementFreezed = false;
+
+    private void Start()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
 
     private void FixedUpdate()
     {
-        Move(new Vector2(moveAxis.x, 0), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
-        Move(new Vector2(0, moveAxis.y), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
+        if (!isMovementFreezed)
+        {
+            Move(new Vector2(moveAxis.x, 0), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
+            Move(new Vector2(0, moveAxis.y), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
+        }
 
         moveAxis = Vector2.zero;
     }
 
+    /// <summary>
+    /// Freezes player movement and sets moving animation to idle
+    /// </summary>
+    public void FreezeMovement()
+    {
+        isMovementFreezed = true;
+    }
+    /// <summary>
+    /// Unfreezes player movement and animations
+    /// </summary>
+    public void UnFreezeMovement()
+    {
+        isMovementFreezed = false;
+    }
 
     private void Move(Vector2 direction, float distance)
     {
@@ -81,7 +100,8 @@ public class TopDownMovementController : MonoBehaviour
         boxCollider.Cast(direction, contactFilter2D, results, distance);
         foreach(RaycastHit2D hit in results)
         {
-            //temp
+            //temp its to ignore coin collision, because movement optimizer doesn't let colliders to touch, makes distance between objects
+            //to do: add layers to filter out colisions
             if (hit && !hit.collider.tag.Equals("Coin"))
             {
                 return hit;
