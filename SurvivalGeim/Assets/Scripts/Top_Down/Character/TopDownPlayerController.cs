@@ -9,7 +9,7 @@ public class TopDownPlayerController : TopDownMovementController
     [SerializeField]
     private Animator animator;
 
-    public static TopDownPlayerController Instance;
+    public static TopDownPlayerController Instance { get; private set; }
 
     private void Awake()
     {
