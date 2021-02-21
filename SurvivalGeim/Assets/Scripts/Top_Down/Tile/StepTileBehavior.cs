@@ -15,14 +15,15 @@ public class StepTileBehavior : TileBehavior
         if (connectingTile.IsSteppedByPlayer && !connectingTile.isTriggerTile && state)
         {
             connectingTile.isTriggerTile = true;
+            isTriggerTile = false;
             TilemapHeightManager.Instance.ChangeLevelHeight(connectingTile.heightChangeType);
             RotateDirection();
             connectingTile.RotateDirection();
         }
-        if (!state)
-        {
-            isTriggerTile = false;
-        }
+        //if (!state)
+        //{
+            
+        //}
     }
     public void RotateDirection()
     {

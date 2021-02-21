@@ -6,8 +6,10 @@ using System;
 using System.Linq;
 
 public enum HeightChangeType { Down, Up }
+
 public class TilemapHeightManager : MonoBehaviour
 {
+
     public static TilemapHeightManager Instance { get; private set; }
     [SerializeField]
     private List<TilemapHeightContainer> tilemapContainers = new List<TilemapHeightContainer>();
@@ -25,6 +27,8 @@ public class TilemapHeightManager : MonoBehaviour
             Destroy(this);
         }
     }
+
+
     private void Start()
     {
         foreach (TilemapHeightContainer data in tilemapContainers)
@@ -71,6 +75,7 @@ public class TilemapHeightContainer
     [SerializeField]
     private List<TilemapHeightData> tilemapHeightDatas = new List<TilemapHeightData>();
 
+    public string MaplevelName => maplevelName;
     public int HeightLevel => heightLevel;
     public int SetPlayerLayerTo => setPlayerLayerTo;
 
@@ -99,6 +104,7 @@ public class TilemapHeightData
     [Header("Main data")]
     [SerializeField]
     private Tilemap tilemap;
+    public Tilemap Tilemap => tilemap;
 
     [Header("Conditions")]
     [SerializeField]
@@ -114,6 +120,10 @@ public class TilemapHeightData
     [SerializeField]
     private List<Collider2D> collider2Ds = new List<Collider2D>();
 
+    public TilemapHeightData(Tilemap tilemap)
+    {
+        this.tilemap = tilemap;
+    }
 
     public void Init(int currentHeight, int levelHeight)
     {

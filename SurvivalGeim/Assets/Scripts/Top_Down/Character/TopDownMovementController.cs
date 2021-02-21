@@ -55,8 +55,7 @@ public class TopDownMovementController : MonoBehaviour
             {
                 float projectionLength = Vector2.Dot(raycastHit2D.normal, playerHit.point - raycastHit2D.point) / (Vector2.SqrMagnitude(raycastHit2D.normal));
 
-                moveDirection = -raycastHit2D.normal * (projectionLength - colliderCheckOffset); 
-                Vector2.ClampMagnitude(-raycastHit2D.normal * (projectionLength - colliderCheckOffset), distance);
+                moveDirection = Vector2.ClampMagnitude(-raycastHit2D.normal * (projectionLength - colliderCheckOffset), distance);//-raycastHit2D.normal * (projectionLength - colliderCheckOffset);
             }
         }
         transform.position += (Vector3)moveDirection;
@@ -68,7 +67,7 @@ public class TopDownMovementController : MonoBehaviour
         collider2D.Cast(direction, contactFilter2D, results, distance);
         foreach (RaycastHit2D hit in results)
         {
-            if (hit)
+            if (hit.collider == boxCollider)
             {
                 return hit;
             }
@@ -82,10 +81,16 @@ public class TopDownMovementController : MonoBehaviour
         boxCollider.Cast(direction, contactFilter2D, results, distance);
         foreach(RaycastHit2D hit in results)
         {
-            if(hit)
+            //temp
+            if (hit && !hit.collider.tag.Equals("Coin"))
             {
                 return hit;
             }
+            //
+            //if(hit)
+            //{
+            //    return hit;
+            //}
         }
 
         return new RaycastHit2D();

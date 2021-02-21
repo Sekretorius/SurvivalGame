@@ -9,6 +9,7 @@ TagManager:
   - GroundGround
   - IgnoreGround
   - Spawn
+  - Coin
   layers:
   - Default
   - TransparentFX
