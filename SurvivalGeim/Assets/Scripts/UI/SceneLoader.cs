@@ -33,12 +33,12 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator Transition(string scene)
     {
-        int transitionSpeed = 3000 / 50;
+        int transitionSpeed = 3500 / 50;
 
         if (TopDownPlayerController.Instance != null)
         {
             circle.transform.position = Camera.main.WorldToScreenPoint(TopDownPlayerController.Instance.transform.position);
-            // Other controller movement stop
+            TopDownPlayerController.Instance.FreezeMovement();
         }
         else
         {
@@ -62,17 +62,24 @@ public class SceneLoader : MonoBehaviour
         PlayerController.instance.Block(); // block movement
 
         if (TopDownPlayerController.Instance != null)
+        {
             circle.transform.position = Camera.main.WorldToScreenPoint(TopDownPlayerController.Instance.transform.position);
+            TopDownPlayerController.Instance.FreezeMovement();
+        }
         else
+        {
             circle.transform.position = Camera.main.WorldToScreenPoint(PlayerController.instance.transform.position);
+            PlayerController.instance.Block();
+        }
 
-        while (circle.sizeDelta.x < 3000)
+        while (circle.sizeDelta.x < 3500)
         {
             circle.sizeDelta = new Vector2(circle.sizeDelta.x + transitionSpeed, circle.sizeDelta.y + transitionSpeed);
             yield return new WaitForFixedUpdate();
         }
 
         PlayerController.instance.Unblock();
+        TopDownPlayerController.Instance.UnFreezeMovement();
         // Other controller movement unstop
 
     }

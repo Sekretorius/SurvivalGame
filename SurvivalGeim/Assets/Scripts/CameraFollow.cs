@@ -14,6 +14,10 @@ public class CameraFollow : MonoBehaviour
 
     private Camera camera;
     private float halfExtent;
+    private float halfExtentH;
+
+    [SerializeField]
+    private bool topDown = false;
     
 
 
@@ -34,20 +38,31 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         camera = GetComponent<Camera>();
+
         halfExtent = camera.orthographicSize * Screen.width / Screen.height;
+        halfExtentH = Camera.main.orthographicSize;
 
     }
 
     private void LateUpdate()
     {
+        SetCameraPosition();
+    }
+    
+    private void SetCameraPosition()
+    {
         transform.position = new Vector3(
             Mathf.Clamp(target.transform.position.x, collider.bounds.min.x + halfExtent, collider.bounds.max.x - halfExtent),
-            gameObject.transform.position.y, gameObject.transform.position.z);
+            topDown == true ?
+            Mathf.Clamp(target.transform.position.y, collider.bounds.min.y + halfExtentH, collider.bounds.max.y - halfExtentH) :
+            gameObject.transform.position.y
+            ,
+            gameObject.transform.position.z);
     }
 
     public void RefreshPosition()
     {
-        if(this != null)
-            gameObject.transform.position = new Vector3(target.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        if (this != null)
+            SetCameraPosition();
     }
 }
