@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,10 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
-    public int maxHealth = 100;
+    public float maxHealth = 100f;
     public int money = 0;
-    public int currentHealth;
+    public float currentHealth;
+    public float healthRegen = 1f;
 
     void Awake()
     {
@@ -23,9 +25,25 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    void Update()
     {
-        currentHealth -= damage;
+        currentHealth += healthRegen * Time.deltaTime;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if(currentHealth < 0)
+        {
+            currentHealth = 0;        
+        }
+
+        HealthBar.instance?.SetHealth(currentHealth);
+    }
+
+    public void ChangeHealth(int health)
+    {
+        currentHealth += health;
         HealthBar.instance.SetHealth(currentHealth);
     }
 

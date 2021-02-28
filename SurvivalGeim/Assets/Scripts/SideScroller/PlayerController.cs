@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpDetected()
     {
-        PlayerManager.instance.TakeDamage(10);
+        PlayerManager.instance.ChangeHealth(-10);
         body.gravityScale = gavityScale;
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
         JHeight = body.position.y;
