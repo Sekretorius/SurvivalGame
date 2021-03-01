@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator Transition(string scene)
     {
-        int transitionSpeed = 3500 / 50;
+        int transitionSpeed = 4000 / 50;
 
         if (TopDownPlayerController.Instance != null)
         {
@@ -72,7 +72,7 @@ public class SceneLoader : MonoBehaviour
             PlayerController.instance.Block();
         }
 
-        while (circle.sizeDelta.x < 3500)
+        while (circle.sizeDelta.x < 4000)
         {
             circle.sizeDelta = new Vector2(circle.sizeDelta.x + transitionSpeed, circle.sizeDelta.y + transitionSpeed);
             yield return new WaitForFixedUpdate();
