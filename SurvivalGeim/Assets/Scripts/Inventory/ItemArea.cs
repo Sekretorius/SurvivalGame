@@ -74,6 +74,7 @@ public class ItemArea : MonoBehaviour
             }
         }
     }
+#if UNITY_EDITOR
     [ContextMenu("Test/calculate cells")]
     public void Test()
     {
@@ -107,4 +108,5 @@ public class ItemArea : MonoBehaviour
         AssetDatabase.CreateAsset(newData, path);
         AssetDatabase.SaveAssets();
     }
+#endif
 }
