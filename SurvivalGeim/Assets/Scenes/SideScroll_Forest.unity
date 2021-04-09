@@ -823,6 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 477232228}
   target: {fileID: 275876868}
+  topDown: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1750,6 +1751,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1258388205847236087, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258388205847236087, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3652261428603434426, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2538,5 +2547,13 @@ PrefabInstance:
       propertyPath: groundCollider
       value: 
       objectReference: {fileID: 477232228}
+    - target: {fileID: 4037900809532290471, guid: 7c4e64d6124ba3b4ba6f6e7de136e5db, type: 3}
+      propertyPath: maxCharge
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037900809532290471, guid: 7c4e64d6124ba3b4ba6f6e7de136e5db, type: 3}
+      propertyPath: manaRegenMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4e64d6124ba3b4ba6f6e7de136e5db, type: 3}

@@ -11,10 +11,12 @@ public class PlayerManager : MonoBehaviour
     public float maxMana = 100f;
     public int money = 0;
     public float currentHealth;
-    public float healthRegen = 1f;
     public float currentMana;
+    public float healthRegen = 1f;
     public float manaRegen = 2f;
 
+    private float currentHealthRegen;
+    private float currentManaRegen;
     void Awake()
     {
         if (instance == null)
@@ -27,30 +29,17 @@ public class PlayerManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentMana = maxMana;
+        currentHealthRegen = healthRegen;
+        currentManaRegen = manaRegen;
     }
 
     void Update()
     {
-        currentHealth += healthRegen * Time.deltaTime;
-        currentMana += manaRegen * Time.deltaTime;
+        currentHealth += currentHealthRegen * Time.deltaTime;
+        currentMana += currentManaRegen * Time.deltaTime;
 
-        if(currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        if(currentHealth < 0)
-        {
-            currentHealth = 0;        
-        }
-
-        if(currentMana > maxMana)
-        {
-            currentMana = maxMana;
-        }
-        if(currentMana < 0)
-        {
-            currentMana = 0;        
-        }
+        currentHealth = currentHealth < 0 ? 0 : currentHealth > maxHealth ? maxHealth : currentMana;
+        currentMana = currentMana < 0 ? 0 : currentMana > maxMana ? maxMana : currentMana;
 
         HealthBar.instance?.SetHealth(currentHealth);
         ManaBar.instance?.SetMana(currentMana);
@@ -71,6 +60,17 @@ public class PlayerManager : MonoBehaviour
     public void ChangeMoney(int sum)
     {
         money += sum;
+        money = money < 0 ? 0 : money;
         MoneyUI.instance.SetMoney(money);
+    }
+
+    public void SetHealthRegen(float regen)
+    {
+        currentHealthRegen = regen;
+    }
+
+    public void SetManahRegen(float regen)
+    {
+        currentManaRegen = regen;
     }
 }
