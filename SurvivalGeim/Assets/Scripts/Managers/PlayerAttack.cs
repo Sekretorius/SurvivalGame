@@ -33,7 +33,8 @@ public class PlayerAttack : MonoBehaviour
         }
 
         if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && PlayerManager.instance.currentMana >= baseManaCost && myTime > nextFire)
-        {                       
+        {
+            PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen);
             PlayerManager.instance.ChangeMana(-baseManaCost);
             Instantiate(projectile, firePosition.position, firePosition.rotation);
 
@@ -43,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
         {
             PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen * manaRegenMultiplier);
         }
-        if (Input.GetButtonUp("Fire2") && !Input.GetButton("Fire1"))
+        if (Input.GetButtonUp("Fire2"))
         {
             PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen);
         }
