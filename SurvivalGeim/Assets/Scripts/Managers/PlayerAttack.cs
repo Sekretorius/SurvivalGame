@@ -10,14 +10,19 @@ public class PlayerAttack : MonoBehaviour
     public float manaRegenMultiplier = 10f;
     public float maxCharge = 3f;
     public float maxScale = 4f;
-    public int baseManaCost = 5;
 
     private float myTime = 0.0F;
+    private int baseManaCost;
+
+    private void Start()
+    {
+        baseManaCost = projectile.GetComponent<Projectile>().manaCost;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        myTime = myTime + Time.deltaTime;
+        if(Input.GetButton("Fire1")) myTime = myTime + Time.deltaTime;
 
         if (Input.GetButtonUp("Fire1") && PlayerManager.instance.currentMana >= baseManaCost)
         {
@@ -54,7 +59,9 @@ public class PlayerAttack : MonoBehaviour
         proj.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         if (myTime > fireRate)
         {
-            proj.transform.localScale += proj.transform.localScale * (myTime > maxCharge ? (maxScale - 1) : myTime / maxCharge * (maxScale - 1));
+            var multip = myTime > maxCharge ? (maxScale - 1) : myTime / maxCharge * (maxScale - 1);
+            proj.transform.localScale += proj.transform.localScale * multip;
+            proj.GetComponent<Projectile>().damage *= multip;
         }
 
         return proj;

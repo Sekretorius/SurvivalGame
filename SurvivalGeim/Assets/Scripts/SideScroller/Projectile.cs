@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
 {
     public float projectileSpeed = 7;
     public float maxDistance = 20;
+    public int manaCost = 5;
+    public float damage = 10;
 
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
