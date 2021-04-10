@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projectileSpeed = 7;
-    public float maxDistance = 20;
+    public float maxDistance = 15;
     public int manaCost = 5;
     public float damage = 10;
 
@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = transform.right * projectileSpeed;
-        Destroy(gameObject, 50 / projectileSpeed);
+        Destroy(gameObject, maxDistance / projectileSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
