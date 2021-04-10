@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour
     public float maxScale = 4f;
     public int baseManaCost = 5;
 
-    private float nextFire = 0.2F;
     private float myTime = 0.0F;
 
     // Update is called once per frame
@@ -23,24 +22,20 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButtonUp("Fire1") && PlayerManager.instance.currentMana >= baseManaCost)
         {
             PlayerManager.instance.ChangeMana(-baseManaCost);
-            var proj = Instantiate(projectile, firePosition.position, firePosition.rotation);
-            if(myTime / maxCharge * maxScale > 1)
-            {
-                proj.transform.localScale *= myTime > maxCharge ? maxScale : myTime / maxCharge * maxScale;
-            }
+            createProjectile();           
             
             myTime = 0.0F;
         }
 
-        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && PlayerManager.instance.currentMana >= baseManaCost && myTime > nextFire)
+        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && PlayerManager.instance.currentMana >= baseManaCost && myTime > fireRate)
         {
             PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen);
             PlayerManager.instance.ChangeMana(-baseManaCost);
-            Instantiate(projectile, firePosition.position, firePosition.rotation);
+            createProjectile();
 
             myTime = 0.0F;            
         }
-        if(Input.GetButtonDown("Fire2") && !Input.GetButton("Fire1"))
+        if(Input.GetButton("Fire2") && !Input.GetButton("Fire1"))
         {
             PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen * manaRegenMultiplier);
         }
@@ -49,5 +44,19 @@ public class PlayerAttack : MonoBehaviour
             PlayerManager.instance.SetManahRegen(PlayerManager.instance.manaRegen);
         }
 
+    }
+
+    private GameObject createProjectile()
+    {
+        var proj = Instantiate(projectile, firePosition.position, firePosition.rotation);
+        var direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - proj.transform.position;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        proj.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (myTime > fireRate)
+        {
+            proj.transform.localScale += proj.transform.localScale * (myTime > maxCharge ? (maxScale - 1) : myTime / maxCharge * (maxScale - 1));
+        }
+
+        return proj;
     }
 }
