@@ -105,6 +105,8 @@ public class Enemy : MonoBehaviour
     public void ReduceHealth(float damageTaken)
     {
         triggered = true;
+        animator.SetBool("Triggered", triggered);
+
         health -= damageTaken;
 
         if (health <= 0)
