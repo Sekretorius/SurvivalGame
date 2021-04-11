@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
 
     public SpriteRenderer renderer;
     public GameObject particles;
+    public CircleCollider2D collider;
 
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
@@ -25,8 +26,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isHero && collision.tag == "Enemy")
+        if (isHero && collision.tag == "Enemy")
+        {
+            collision.GetComponent<Enemy>().ReduceHealth(damage);
             StartCoroutine(WaitForSound());
+        }
         else if (!isHero && collision.tag == "Player")
             StartCoroutine(WaitForSound());
     }
@@ -44,6 +48,7 @@ public class Projectile : MonoBehaviour
 
     private void DisableEffects()
     {
+        collider.enabled = false;
         renderer.enabled = false;
         particles.SetActive(false);
     }

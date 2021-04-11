@@ -31,8 +31,14 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D boxCollider;
     [SerializeField]
     public CompositeCollider2D groundCollider;
+    [SerializeField]
+    public Animator animator;
+    [SerializeField]
+    public SpriteRenderer sprite;
 
     public Vector2 playerPos;
+
+    bool idle = true;
 
     void Awake()
     {
@@ -45,7 +51,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerPos = boxCollider.bounds.center;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("IgnoreGround"));
+        animator.SetBool("Idle", true);
     }
 
     void Update()
@@ -88,11 +96,14 @@ public class PlayerController : MonoBehaviour
     private void JumpDetected(float direction = 0)
     {
         body.gravityScale = gavityScale;
-        if(direction == 0)
+        if (direction == 0)
+        {
             body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+            JHeight = body.position.y;
+        }
         else
             body.velocity = new Vector2(direction, jumpSpeed);
-        JHeight = body.position.y;
+        
         jumped = true;
         groundCollider.gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
     }
@@ -110,8 +121,30 @@ public class PlayerController : MonoBehaviour
         if (block)
             return;
 
+        Animate();
+
         if (!jumped)
             body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void Animate()
+    {
+        if (!idle && movement == Vector2.zero)
+        {
+            idle = true;
+            animator.SetBool("Idle", true);
+        }
+        else if (idle && movement != Vector2.zero)
+        {
+            idle = false;
+            animator.SetBool("Idle", false);
+        }
+
+        if (movement.x > 0)
+            sprite.flipX = false;
+        else if (movement.x < 0)
+            sprite.flipX = true;
+        
     }
 
     public void Block()

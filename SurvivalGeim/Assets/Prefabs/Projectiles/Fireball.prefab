@@ -4952,6 +4952,7 @@ MonoBehaviour:
   isHero: 1
   renderer: {fileID: 6416155089264636194}
   particles: {fileID: 2951259967709581206}
+  collider: {fileID: 5617165308103228898}
 --- !u!82 &5064699779037966513
 AudioSource:
   m_ObjectHideFlags: 0

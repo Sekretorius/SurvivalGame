@@ -53,6 +53,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public Rigidbody2D body;
 
+    [SerializeField]
+    public SpriteRenderer sprite;
+
     public Animator animator;
 
     public void Awake()
@@ -71,6 +74,7 @@ public class Enemy : MonoBehaviour
         offset = boxCollider.size.x;
         health = maxHealth;
         hScale = healthBar.transform.localScale.x;
+        Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
     }
 
     // Update is called once per frame
@@ -92,21 +96,28 @@ public class Enemy : MonoBehaviour
             body.MovePosition(movement);
         }
         if ((enemyPos - PlayerController.instance.playerPos).normalized.x > 0)
-            transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
+            sprite.flipX = true;
         else
-            transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+            sprite.flipX = false;
     }
 
-    public void ReduceHealth(int damageTaken)
+    public void ReduceHealth(float damageTaken)
     {
+        triggered = true;
         health -= damageTaken;
+
+        if (health <= 0)
+            Destroy(gameObject);
+
+        StartCoroutine(Injured());
+
         Vector3 scale = healthBar.transform.localScale;
-        healthBar.transform.localScale = new Vector3(scale.x, (maxHealth / health) * hScale, scale.z);
+        healthBar.transform.localScale = new Vector3((health / maxHealth) * hScale, scale.y , scale.z);
     }
 
     public void CheckIfTrigger()
     {
-        if(Vector2.Distance(enemyPos, PlayerManager.instance.playerPos) <= triggerRange && triggered == false)
+        if(Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= triggerRange && triggered == false)
         {
             triggered = true;
             animator.SetBool("Triggered", triggered);
@@ -125,6 +136,14 @@ public class Enemy : MonoBehaviour
         // Knockback
        // if (triggered && collision.tag == "Player" && !knockBack)
             //StartCoroutine(Timer(Knockback));
+    }
+
+    IEnumerator Injured()
+    {
+        Color old = sprite.color;
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        sprite.color = old;
     }
 
     IEnumerator Timer(Action action)
