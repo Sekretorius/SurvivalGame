@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 playerPos;
 
+    [SerializeField]
+    public GameObject punches;
+
+    public float punchStrengh = 2;
+
     bool idle = true;
 
     void Awake()
@@ -83,6 +88,9 @@ public class PlayerController : MonoBehaviour
             movement.y = Input.GetAxisRaw("Vertical");
         }
 
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+            animator.SetBool("Attack", true);
+
         playerPos = boxCollider.bounds.center;
 
     }
@@ -92,6 +100,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(playerPos, new Vector3(0.2f, 0.2f, 0.2f));
     }
+
 
     private void JumpDetected(float direction = 0)
     {
@@ -114,6 +123,11 @@ public class PlayerController : MonoBehaviour
         body.gravityScale = 0;
         jumped = false;
         groundCollider.gameObject.layer = LayerMask.NameToLayer("Ground");
+    }
+
+    public void OnAttackEnded()
+    {
+        animator.SetBool("Attack", false);
     }
 
     void FixedUpdate()
@@ -140,11 +154,25 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Idle", false);
         }
 
-        if (movement.x > 0)
+        if (movement.x > 0 && sprite.flipX)
+        {
+            SwapArms(0);
             sprite.flipX = false;
-        else if (movement.x < 0)
+        }
+        else if (movement.x < 0 && !sprite.flipX)
+        {
+            SwapArms(180);
             sprite.flipX = true;
-        
+        }  
+    }
+
+    private void SwapArms(float rotate)
+    {
+        Quaternion q = punches.transform.localRotation;
+        punches.transform.localRotation = new Quaternion(q.x, rotate, q.z,q.w);
+        Vector3 p = punches.transform.localPosition;
+        Debug.Log(p);
+        punches.transform.localPosition = new Vector3(-p.x,p.y,p.z);
     }
 
     public void Block()

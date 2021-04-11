@@ -95,6 +95,7 @@ public class Enemy : MonoBehaviour
         {
             body.MovePosition(movement);
         }
+
         if ((enemyPos - PlayerController.instance.playerPos).normalized.x > 0)
             sprite.flipX = true;
         else
@@ -126,12 +127,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (!triggered && collision.tag == "Player") {
-        //    circleCollider2D.enabled = false;
-        //    triggered = true;
-        //    animator.SetBool("Triggered", triggered);
-        //    return;
-        //}
+        if (collision.tag == "Punch") {
+            ReduceHealth(PlayerController.instance.punchStrengh);
+            return;
+        }
 
         // Knockback
        // if (triggered && collision.tag == "Player" && !knockBack)
@@ -140,6 +139,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Injured()
     {
+        if(sprite.color == Color.red)
+            yield break;
+
         Color old = sprite.color;
         sprite.color = Color.red;
         yield return new WaitForSeconds(0.25f);
