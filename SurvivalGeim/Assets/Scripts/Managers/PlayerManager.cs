@@ -8,10 +8,15 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     public float maxHealth = 100f;
+    public float maxMana = 100f;
     public int money = 0;
     public float currentHealth;
+    public float currentMana;
     public float healthRegen = 1f;
+    public float manaRegen = 2f;
 
+    private float currentHealthRegen;
+    private float currentManaRegen;
     public Vector3 playerPos;
 
     void Awake()
@@ -25,22 +30,21 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        currentMana = maxMana;
+        currentHealthRegen = healthRegen;
+        currentManaRegen = manaRegen;
     }
 
     void Update()
     {
-        currentHealth += healthRegen * Time.deltaTime;
+        currentHealth += currentHealthRegen * Time.deltaTime;
+        currentMana += currentManaRegen * Time.deltaTime;
 
-        if(currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        if(currentHealth < 0)
-        {
-            currentHealth = 0;        
-        }
+        currentHealth = currentHealth < 0 ? 0 : currentHealth > maxHealth ? maxHealth : currentMana;
+        currentMana = currentMana < 0 ? 0 : currentMana > maxMana ? maxMana : currentMana;
 
         HealthBar.instance?.SetHealth(currentHealth);
+        ManaBar.instance?.SetMana(currentMana);
     }
 
     public void ChangeHealth(int health)
@@ -49,9 +53,26 @@ public class PlayerManager : MonoBehaviour
         HealthBar.instance.SetHealth(currentHealth);
     }
 
+    public void ChangeMana(int mana)
+    {
+        currentMana += mana;
+        ManaBar.instance.SetMana(currentMana);
+    }
+
     public void ChangeMoney(int sum)
     {
         money += sum;
+        money = money < 0 ? 0 : money;
         MoneyUI.instance.SetMoney(money);
+    }
+
+    public void SetHealthRegen(float regen)
+    {
+        currentHealthRegen = regen;
+    }
+
+    public void SetManahRegen(float regen)
+    {
+        currentManaRegen = regen;
     }
 }
