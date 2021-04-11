@@ -201,6 +201,7 @@ MonoBehaviour:
   body: {fileID: 2906307108516327365}
   boxCollider: {fileID: 2906307108516327366}
   groundCollider: {fileID: 0}
+  playerPos: {x: 0, y: 0}
 --- !u!114 &4037900809532290471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,4 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePosition: {fileID: 3770106191646487730}
   projectile: {fileID: 8533738127239662399, guid: f26aa5a8b04709a469281c7e3e2be653, type: 3}
-  fireRate: 0.1
+  fireRate: 0.2
+  manaRegenMultiplier: 10
+  maxCharge: 3
+  maxScale: 4

@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         currentHealth += currentHealthRegen * Time.deltaTime;
         currentMana += currentManaRegen * Time.deltaTime;
 
-        currentHealth = currentHealth < 0 ? 0 : currentHealth > maxHealth ? maxHealth : currentMana;
+        currentHealth = currentHealth < 0 ? 0 : currentHealth > maxHealth ? maxHealth : currentHealth;
         currentMana = currentMana < 0 ? 0 : currentMana > maxMana ? maxMana : currentMana;
 
         HealthBar.instance?.SetHealth(currentHealth);

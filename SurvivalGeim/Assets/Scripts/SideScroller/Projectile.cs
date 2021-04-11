@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     public float maxDistance = 15;
     public int manaCost = 5;
     public float damage = 10;
+    public float knockback = 1;
+    public bool isHero = true;
 
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
