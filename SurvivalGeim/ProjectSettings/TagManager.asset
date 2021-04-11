@@ -11,6 +11,8 @@ TagManager:
   - Spawn
   - Coin
   - Enemy
+  - Punch
+  - Projectile
   layers:
   - Default
   - TransparentFX
