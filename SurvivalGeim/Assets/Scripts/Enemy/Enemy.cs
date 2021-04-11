@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2;
 
     [SerializeField]
+    [Range(0f, 10f)]
+    public float triggerRange = 5;
+
+    [SerializeField]
     public int damage = 10;
 
     [SerializeField]
@@ -47,10 +51,10 @@ public class Enemy : MonoBehaviour
     public BoxCollider2D boxCollider;
 
     [SerializeField]
-    public CircleCollider2D circleCollider2D;
+    public Rigidbody2D body;
 
     [SerializeField]
-    public Rigidbody2D body;
+    public SpriteRenderer sprite;
 
     public Animator animator;
 
@@ -70,6 +74,7 @@ public class Enemy : MonoBehaviour
         offset = boxCollider.size.x;
         health = maxHealth;
         hScale = healthBar.transform.localScale.x;
+        Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
     }
 
     // Update is called once per frame
@@ -77,6 +82,8 @@ public class Enemy : MonoBehaviour
     {
         enemyPos = boxCollider.bounds.center;
         movement = Vector2.MoveTowards(enemyPos, PlayerController.instance.playerPos, movementSpeed);
+
+        CheckIfTrigger();
 
         if (Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= attackRange && attack)
             StartCoroutine(AttackStart());
@@ -89,30 +96,54 @@ public class Enemy : MonoBehaviour
             body.MovePosition(movement);
         }
         if ((enemyPos - PlayerController.instance.playerPos).normalized.x > 0)
-            transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
+            sprite.flipX = true;
         else
-            transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+            sprite.flipX = false;
     }
 
-    public void ReduceHealth(int damageTaken)
+    public void ReduceHealth(float damageTaken)
     {
+        triggered = true;
         health -= damageTaken;
+
+        if (health <= 0)
+            Destroy(gameObject);
+
+        StartCoroutine(Injured());
+
         Vector3 scale = healthBar.transform.localScale;
-        healthBar.transform.localScale = new Vector3(scale.x, (maxHealth / health) * hScale, scale.z);
+        healthBar.transform.localScale = new Vector3((health / maxHealth) * hScale, scale.y , scale.z);
+    }
+
+    public void CheckIfTrigger()
+    {
+        if(Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= triggerRange && triggered == false)
+        {
+            triggered = true;
+            animator.SetBool("Triggered", triggered);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!triggered && collision.tag == "Player") {
-            circleCollider2D.enabled = false;
-            triggered = true;
-            animator.SetBool("Triggered", triggered);
-            return;
-        }
+        //if (!triggered && collision.tag == "Player") {
+        //    circleCollider2D.enabled = false;
+        //    triggered = true;
+        //    animator.SetBool("Triggered", triggered);
+        //    return;
+        //}
 
         // Knockback
        // if (triggered && collision.tag == "Player" && !knockBack)
             //StartCoroutine(Timer(Knockback));
+    }
+
+    IEnumerator Injured()
+    {
+        Color old = sprite.color;
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        sprite.color = old;
     }
 
     IEnumerator Timer(Action action)
@@ -171,7 +202,7 @@ public class Enemy : MonoBehaviour
             
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(enemyPos, PlayerController.instance.playerPos);
-            Gizmos.DrawWireSphere(enemyPos, circleCollider2D.radius);
+            Gizmos.DrawWireSphere(enemyPos, triggerRange);
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(enemyPos, attackRange);
         }

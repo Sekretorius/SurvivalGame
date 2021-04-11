@@ -16,6 +16,10 @@ public class Projectile : MonoBehaviour
     public KeyCode keyCode;
 
 
+    public SpriteRenderer renderer;
+    public GameObject particles;
+    public CircleCollider2D collider;
+
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,31 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isHero && collision.tag == "Enemy")
+        {
+            collision.GetComponent<Enemy>().ReduceHealth(damage);
+            StartCoroutine(WaitForSound());
+        }
+        else if (!isHero && collision.tag == "Player")
+            StartCoroutine(WaitForSound());
+    }
+
+    private IEnumerator WaitForSound()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        if (destroyable) DisableEffects();
+
+        while (audio.isPlaying)
+            yield return null;
+
         if(destroyable) Destroy(gameObject);
+    }
+
+    private void DisableEffects()
+    {
+        collider.enabled = false;
+        renderer.enabled = false;
+        particles.SetActive(false);
     }
 
 }

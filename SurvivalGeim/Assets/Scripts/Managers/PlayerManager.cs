@@ -37,6 +37,8 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+        playerPos = PlayerController.instance.playerPos;
+
         currentHealth += currentHealthRegen * Time.deltaTime;
         currentMana += currentManaRegen * Time.deltaTime;
 

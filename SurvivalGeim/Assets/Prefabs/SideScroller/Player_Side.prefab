@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253773451971335202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.862, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2906307108516327368}
@@ -75,6 +75,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCode: 113
   manaRegenMultiplier: 10
+  duration: 10
+  cooldown: 10
 --- !u!1 &1813083181932464830
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,12 +118,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2906307108516327368}
   - component: {fileID: 2906307108516327367}
-  - component: {fileID: 2906307108516327369}
   - component: {fileID: 2906307108516327366}
   - component: {fileID: 2906307108516327365}
   - component: {fileID: 2906307108516327371}
   - component: {fileID: 4037900809532290471}
-  - component: {fileID: 8671445171206031965}
+  - component: {fileID: 1740912144}
+  - component: {fileID: 275876876}
   m_Layer: 7
   m_Name: Player_Side
   m_TagString: Player
@@ -138,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 2906307108516327364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.83, y: -1.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 3770106191646487730}
   - {fileID: 5465308551257068058}
@@ -185,8 +187,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c8d5fadc6db72144a8e886d269bb8fe3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -196,22 +198,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2906307108516327369
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906307108516327364}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!61 &2906307108516327366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,18 +211,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0029146075, y: -0.000000014901161}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.13587415, y: 0.32047775}
   m_EdgeRadius: 0
 --- !u!50 &2906307108516327365
 Rigidbody2D:
@@ -250,7 +236,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -279,6 +265,8 @@ MonoBehaviour:
   body: {fileID: 2906307108516327365}
   boxCollider: {fileID: 2906307108516327366}
   groundCollider: {fileID: 0}
+  animator: {fileID: 1740912144}
+  sprite: {fileID: 2906307108516327367}
   playerPos: {x: 0, y: 0}
 --- !u!114 &4037900809532290471
 MonoBehaviour:
@@ -299,7 +287,26 @@ MonoBehaviour:
   fireRate: 0.2
   maxCharge: 3
   maxScale: 4
---- !u!114 &8671445171206031965
+--- !u!95 &1740912144
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906307108516327364}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5599171cf534854a838721c1ce285b5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &275876876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
