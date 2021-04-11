@@ -71,7 +71,7 @@ public class PlayerManager : MonoBehaviour
         currentHealthRegen = regen;
     }
 
-    public void SetManahRegen(float regen)
+    public void SetManaRegen(float regen)
     {
         currentManaRegen = regen;
     }

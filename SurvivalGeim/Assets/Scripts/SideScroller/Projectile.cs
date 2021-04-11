@@ -10,6 +10,11 @@ public class Projectile : MonoBehaviour
     public float damage = 10;
     public float knockback = 1;
     public bool isHero = true;
+    public bool destroyable = true;
+    public bool chargeable = true;
+    public bool rotatable = true;
+    public KeyCode keyCode;
+
 
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
@@ -22,7 +27,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if(destroyable) Destroy(gameObject);
     }
 
 }
