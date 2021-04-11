@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     // Jumping
     bool jumped = false;
+    bool control = true;
     public float JHeight;
     [SerializeField]
     public Rigidbody2D body;
@@ -30,12 +32,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public CompositeCollider2D groundCollider;
 
+    public Vector2 playerPos;
+
     void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this);
+
     }
 
     private void Start()
@@ -51,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !jumped)
             JumpDetected();
 
-        if (jumped)
+        if (jumped && control)
         {            
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
                 moveVelocity = -moveSpeed;
@@ -69,17 +74,27 @@ public class PlayerController : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
         }
+
+        playerPos = boxCollider.bounds.center;
+
     }
 
-    private void JumpDetected()
+    public void OnDrawGizmos()
     {
-        PlayerManager.instance.ChangeHealth(-10);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(playerPos, new Vector3(0.2f, 0.2f, 0.2f));
+    }
+
+    private void JumpDetected(float direction = 0)
+    {
         body.gravityScale = gavityScale;
-        body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+        if(direction == 0)
+            body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+        else
+            body.velocity = new Vector2(direction, jumpSpeed);
         JHeight = body.position.y;
         jumped = true;
         groundCollider.gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-
     }
 
     private void resetPos()
@@ -116,4 +131,24 @@ public class PlayerController : MonoBehaviour
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 	}
+
+    public void GetKnocked(Vector2 position, float power)
+    {
+        StartCoroutine(WaitForFixed(delegate()
+        {
+            //CameraFollow.instance.block = true;
+            control = false;
+            JumpDetected(position.x * power);
+        }));    
+    }
+
+
+    IEnumerator WaitForFixed(Action action)
+    {
+        yield return new WaitForFixedUpdate();
+        action.Invoke();
+
+        yield return new WaitForSeconds(0.5f);
+        control = true;
+    }
 }

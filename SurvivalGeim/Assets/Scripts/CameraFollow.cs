@@ -18,8 +18,8 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField]
     private bool topDown = false;
-    
 
+    public bool block = false;
 
     void Awake()
     {
@@ -46,7 +46,8 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        SetCameraPosition();
+        if(!block)
+            SetCameraPosition();
     }
     
     private void SetCameraPosition()

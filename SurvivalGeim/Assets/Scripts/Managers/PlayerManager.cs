@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public float currentHealth;
     public float healthRegen = 1f;
 
+    public Vector3 playerPos;
+
     void Awake()
     {
         if (instance == null)
