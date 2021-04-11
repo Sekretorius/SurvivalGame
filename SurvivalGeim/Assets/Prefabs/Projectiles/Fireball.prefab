@@ -4818,6 +4818,7 @@ GameObject:
   - component: {fileID: 4276287123805400531}
   - component: {fileID: 6040942146208143430}
   - component: {fileID: 5064699779037966513}
+  - component: {fileID: 5617165308103228898}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -4949,6 +4950,8 @@ MonoBehaviour:
   damage: 10
   knockback: 1
   isHero: 1
+  renderer: {fileID: 6416155089264636194}
+  particles: {fileID: 2951259967709581206}
 --- !u!82 &5064699779037966513
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5045,3 +5048,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &5617165308103228898
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533738127239662399}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.047029015, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.18072172

@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2;
 
     [SerializeField]
+    [Range(0f, 10f)]
+    public float triggerRange = 5;
+
+    [SerializeField]
     public int damage = 10;
 
     [SerializeField]
@@ -45,9 +49,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     public BoxCollider2D boxCollider;
-
-    [SerializeField]
-    public CircleCollider2D circleCollider2D;
 
     [SerializeField]
     public Rigidbody2D body;
@@ -78,6 +79,8 @@ public class Enemy : MonoBehaviour
         enemyPos = boxCollider.bounds.center;
         movement = Vector2.MoveTowards(enemyPos, PlayerController.instance.playerPos, movementSpeed);
 
+        CheckIfTrigger();
+
         if (Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= attackRange && attack)
             StartCoroutine(AttackStart());
     }
@@ -101,14 +104,23 @@ public class Enemy : MonoBehaviour
         healthBar.transform.localScale = new Vector3(scale.x, (maxHealth / health) * hScale, scale.z);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void CheckIfTrigger()
     {
-        if (!triggered && collision.tag == "Player") {
-            circleCollider2D.enabled = false;
+        if(Vector2.Distance(enemyPos, PlayerManager.instance.playerPos) <= triggerRange && triggered == false)
+        {
             triggered = true;
             animator.SetBool("Triggered", triggered);
-            return;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (!triggered && collision.tag == "Player") {
+        //    circleCollider2D.enabled = false;
+        //    triggered = true;
+        //    animator.SetBool("Triggered", triggered);
+        //    return;
+        //}
 
         // Knockback
        // if (triggered && collision.tag == "Player" && !knockBack)
@@ -171,7 +183,7 @@ public class Enemy : MonoBehaviour
             
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(enemyPos, PlayerController.instance.playerPos);
-            Gizmos.DrawWireSphere(enemyPos, circleCollider2D.radius);
+            Gizmos.DrawWireSphere(enemyPos, triggerRange);
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(enemyPos, attackRange);
         }

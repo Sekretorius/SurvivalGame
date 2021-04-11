@@ -11,6 +11,9 @@ public class Projectile : MonoBehaviour
     public float knockback = 1;
     public bool isHero = true;
 
+    public SpriteRenderer renderer;
+    public GameObject particles;
+
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,27 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(isHero && collision.tag == "Enemy")
+            StartCoroutine(WaitForSound());
+        else if (!isHero && collision.tag == "Player")
+            StartCoroutine(WaitForSound());
+    }
+
+    private IEnumerator WaitForSound()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        DisableEffects();
+
+        while (audio.isPlaying)
+            yield return null;
+
         Destroy(gameObject);
+    }
+
+    private void DisableEffects()
+    {
+        renderer.enabled = false;
+        particles.SetActive(false);
     }
 
 }
