@@ -214,11 +214,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1c664b45196174d90c52c888d1383c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
-  textOnPick: Player touched me
-  textField: {fileID: 437904050403215708}
-  textDuration: 3
+  pickType: 1
+  itemCollider: {fileID: 0}
+  minValue: 1
+  maxValue: 50
   spriteRenderer: {fileID: 437904050290565987}
+  fadeAnimation:
+    animationDuration: 0.15
+    fadePercentage: 1
+    isFadingIn: 0
+  scaleAnimation:
+    animationDuration: 10
+    targetScale: {x: 5, y: 5, z: 5}
+  transformAnimation:
+    animationDuration: 10
+    targetPosition: {x: 10, y: 10, z: 10}
+    degrees: 0
+    amount: 0
 --- !u!50 &437904050290565918
 Rigidbody2D:
   serializedVersion: 4

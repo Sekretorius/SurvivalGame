@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterEventHandler))]
 public class TopDownMovementController : MonoBehaviour
@@ -35,7 +36,7 @@ public class TopDownMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isMovementFreezed)
+        if (!isMovementFreezed && Vector2.SqrMagnitude(moveAxis) > 0)
         {
             Move(new Vector2(moveAxis.x, 0), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
             Move(new Vector2(0, moveAxis.y), currentSpeed * Time.fixedDeltaTime + colliderCheckOffset);
@@ -77,7 +78,15 @@ public class TopDownMovementController : MonoBehaviour
                 moveDirection = Vector2.ClampMagnitude(-raycastHit2D.normal * (projectionLength - colliderCheckOffset), distance);//-raycastHit2D.normal * (projectionLength - colliderCheckOffset);
             }
         }
+        if(moveDirection == Vector2.zero)
+        {
+            UpdateOnMove();
+        }
         transform.position += (Vector3)moveDirection;
+    }
+    protected virtual void UpdateOnMove()
+    {
+
     }
     private RaycastHit2D GetPlayerHit(Collider2D collider2D, Vector2 direction, float distance)
     {
@@ -96,21 +105,18 @@ public class TopDownMovementController : MonoBehaviour
     private RaycastHit2D OnCollision(Vector2 direction, float distance)
     {
         RaycastHit2D[] results = new RaycastHit2D[10];
+
         ContactFilter2D contactFilter2D = new ContactFilter2D();
+        contactFilter2D.layerMask = ~LayerMask.GetMask("Walkable");
+        contactFilter2D.useLayerMask = true;
+
         boxCollider.Cast(direction, contactFilter2D, results, distance);
         foreach(RaycastHit2D hit in results)
         {
-            //temp its to ignore coin collision, because movement optimizer doesn't let colliders to touch, makes distance between objects
-            //to do: add layers to filter out colisions
-            if (hit && !hit.collider.tag.Equals("Coin"))
+            if (hit)
             {
                 return hit;
             }
-            //
-            //if(hit)
-            //{
-            //    return hit;
-            //}
         }
 
         return new RaycastHit2D();

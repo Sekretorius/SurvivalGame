@@ -33,7 +33,9 @@ public class ManaBar : MonoBehaviour
   public void SetMana(float mana) 
   {
     slider.value = mana;
-
-    manaText.text = ((int)mana).ToString() + " / " + slider.maxValue;
+    if (manaText != null)
+    {
+        manaText.text = ((int)mana).ToString() + " / " + slider.maxValue;
+    }
   }
 }
