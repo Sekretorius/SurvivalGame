@@ -359,17 +359,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &35811262 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3652261428253927946, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
-  m_PrefabInstance: {fileID: 3652261428285261236}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed09a74bebd95247947f32573361c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &76565513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6240090340347499669, guid: ad333056b68e1bc4fa62770c34e67ffa, type: 3}
@@ -920,6 +909,7 @@ MonoBehaviour:
   collider: {fileID: 477232228}
   target: {fileID: 275876868}
   topDown: 0
+  block: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1345,7 +1335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 745971217170306789, guid: c05c18a0dd9a0c748a29afd28f58efce, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 745971217170306789, guid: c05c18a0dd9a0c748a29afd28f58efce, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2393,7 +2383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 134659730789146782, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 134659730789146782, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2718,7 +2708,7 @@ Transform:
   - {fileID: 2090245161}
   - {fileID: 1124388159}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2055227822 stripped
 Transform:
@@ -10617,7 +10607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1661800657733027378, guid: 74d3412458850244c8b09c788419466c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1661800657733027378, guid: 74d3412458850244c8b09c788419466c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10724,10 +10714,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2906307108516327371, guid: 7c4e64d6124ba3b4ba6f6e7de136e5db, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 35811262}
     - target: {fileID: 2906307108516327371, guid: 7c4e64d6124ba3b4ba6f6e7de136e5db, type: 3}
       propertyPath: groundCollider
       value: 
@@ -16396,6 +16382,10 @@ PrefabInstance:
     - target: {fileID: 3333044551451098406, guid: f103e1509bd238f4190ede4c38909581, type: 3}
       propertyPath: m_Name
       value: Cave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333044551944931560, guid: f103e1509bd238f4190ede4c38909581, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3333044551944931561, guid: f103e1509bd238f4190ede4c38909581, type: 3}
       propertyPath: m_Size.x

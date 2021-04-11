@@ -10,6 +10,11 @@ public class Projectile : MonoBehaviour
     public float damage = 10;
     public float knockback = 1;
     public bool isHero = true;
+    public bool destroyable = true;
+    public bool chargeable = true;
+    public bool rotatable = true;
+    public KeyCode keyCode;
+
 
     public SpriteRenderer renderer;
     public GameObject particles;
@@ -38,12 +43,12 @@ public class Projectile : MonoBehaviour
     private IEnumerator WaitForSound()
     {
         AudioSource audio = GetComponent<AudioSource>();
-        DisableEffects();
+        if (destroyable) DisableEffects();
 
         while (audio.isPlaying)
             yield return null;
 
-        Destroy(gameObject);
+        if(destroyable) Destroy(gameObject);
     }
 
     private void DisableEffects()
