@@ -3,60 +3,41 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Coin : MonoBehaviour
+using AnimationSystem;
+public class Coin : PickableItem
 {
     [SerializeField]
     private int minValue = 1;
     [SerializeField]
     private int maxValue = 50;
-    private int value;    
-
-    [SerializeField]
-    [TextArea]
-    private string textOnPick = "";
-
-    [SerializeField]
-    private TextMeshProUGUI textField;
-
-    [SerializeField]
-    private float textDuration = 3;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private RectTransform rect;
 
-    private bool isPicked = false;
-    private void Awake()
+    [SerializeField]
+    private FadeAnimation fadeAnimation;
+
+    protected override void Start()
     {
-        textField.gameObject.SetActive(false);
+        base.Start();
+        fadeAnimation.SpriteRenderer = spriteRenderer;
+        fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); } );
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isPicked)
+        if (IsPicked)
         {
             return;
         }
         if (collision.collider.name.Equals("Player"))
         {
-            value = Random.Range(minValue, maxValue);
+            int value = Random.Range(minValue, maxValue);
             PlayerManager.instance.ChangeMoney(value);
-            isPicked = true;
-            Debug.Log(textOnPick);
-            textField.gameObject.SetActive(true);
-            textField.text = textOnPick;
-            spriteRenderer.enabled = false;
-            StartCoroutine(Timmer());
+            IsPicked = true;
+            fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
+            fadeAnimation.StartAnimation();
         }
-    }
-
-    private IEnumerator Timmer()
-    {
-        float time = 0;
-        while(time < textDuration)
-        {
-            yield return new WaitForEndOfFrame();
-            time += Time.deltaTime;
-        }
-        Destroy(gameObject);
     }
 }

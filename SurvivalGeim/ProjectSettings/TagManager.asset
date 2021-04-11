@@ -11,6 +11,7 @@ TagManager:
   - Spawn
   - Coin
   - Enemy
+  - Interactable
   - Punch
   - Projectile
   layers:
@@ -24,7 +25,7 @@ TagManager:
   - Player
   - Ground
   - Enemy
-  - 
+  - Walkable
   - 
   - 
   - 

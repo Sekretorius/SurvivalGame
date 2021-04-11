@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        playerPos = PlayerController.instance.playerPos;
+        //playerPos = PlayerController.instance.playerPos;
 
         currentHealth += currentHealthRegen * Time.deltaTime;
         currentMana += currentManaRegen * Time.deltaTime;
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     public void ChangeMana(int mana)
     {
         currentMana += mana;
-        ManaBar.instance.SetMana(currentMana);
+        ManaBar.instance?.SetMana(currentMana);
     }
 
     public void ChangeMoney(int sum)
