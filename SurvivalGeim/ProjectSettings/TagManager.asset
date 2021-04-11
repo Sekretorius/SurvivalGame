@@ -10,6 +10,7 @@ TagManager:
   - IgnoreGround
   - Spawn
   - Coin
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - IgnoreGround
   - Player
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 
