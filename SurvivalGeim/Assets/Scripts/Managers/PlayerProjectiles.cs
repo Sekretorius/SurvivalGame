@@ -11,13 +11,15 @@ public class PlayerProjectiles : MonoBehaviour
     public float maxScale = 4f;
 
     private float myTime;
+    private float chargeTime;
     private List<Projectile> projs = new List<Projectile>();
 
     private void Start()
     {
         for(int i = 0; i < projectiles.Length; i++)
             projs.Add(projectiles[i].GetComponent<Projectile>());
-        myTime = 0.00f;
+        myTime = 0.0f;
+        chargeTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -31,9 +33,10 @@ public class PlayerProjectiles : MonoBehaviour
 
     private void checkForInput(Projectile projectile, int index)
     {
-        if (projectile.chargeable && Input.GetKey(projectile.keyCode)) myTime += Time.deltaTime;
+        myTime += Time.deltaTime;
+        if (projectile.chargeable && Input.GetKey(projectile.keyCode)) chargeTime += Time.deltaTime;
 
-        if (Input.GetKeyUp(projectile.keyCode) && PlayerManager.instance.currentMana >= projectile.manaCost)
+        if (Input.GetKeyUp(projectile.keyCode) && PlayerManager.instance.currentMana >= projectile.manaCost && myTime >= fireRate)
         {
             PlayerManager.instance.ChangeMana(-projectile.manaCost);
             createProjectile(index);            
@@ -56,15 +59,16 @@ public class PlayerProjectiles : MonoBehaviour
             proj.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
         }
 
-        if (projs[index].chargeable && myTime > fireRate)
+        if (projs[index].chargeable && chargeTime > fireRate)
         {
-            var multip = myTime > maxCharge ? (maxScale - 1) : myTime / maxCharge * (maxScale - 1);
+            var multip = chargeTime > maxCharge ? (maxScale - 1) : chargeTime / maxCharge * (maxScale - 1);
             proj.transform.localScale += proj.transform.localScale * multip;
             proj.GetComponent<Projectile>().damage *= multip;
             proj.GetComponent<Projectile>().knockback *= multip;
         }
 
-        myTime = 0.0F;
+        myTime = 0.0f;
+        chargeTime = 0.0f;
         return proj;
     }
 }

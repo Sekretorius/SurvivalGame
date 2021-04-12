@@ -4953,7 +4953,7 @@ MonoBehaviour:
   destroyable: 1
   chargeable: 1
   rotatable: 1
-  keyCode: 323
+  keyCode: 49
   renderer: {fileID: 6416155089264636194}
   particles: {fileID: 2951259967709581206}
   collider: {fileID: 5617165308103228898}

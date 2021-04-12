@@ -647,7 +647,7 @@ MonoBehaviour:
   projectiles:
   - {fileID: 8533738127239662399, guid: f26aa5a8b04709a469281c7e3e2be653, type: 3}
   - {fileID: 6535331057026809382, guid: 51fe20356d3a5ee488defbf8c55285b0, type: 3}
-  fireRate: 0.2
+  fireRate: 0.3
   maxCharge: 3
   maxScale: 4
 --- !u!95 &1740912144

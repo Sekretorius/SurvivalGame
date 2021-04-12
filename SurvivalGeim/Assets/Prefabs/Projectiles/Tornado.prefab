@@ -224,7 +224,7 @@ MonoBehaviour:
   destroyable: 0
   chargeable: 0
   rotatable: 0
-  keyCode: 324
+  keyCode: 50
   renderer: {fileID: 6535331057026809380}
   particles: {fileID: 6854806385632353449}
   collider: {fileID: 6677570276613886871}
