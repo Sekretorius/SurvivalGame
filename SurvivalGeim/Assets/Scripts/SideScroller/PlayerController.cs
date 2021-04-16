@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     bool idle = true;
 
+    public ParticleSystem particles;
+
     void Awake()
     {
         if (instance == null)

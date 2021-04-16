@@ -58,6 +58,11 @@ public class Enemy : MonoBehaviour
 
     public Animator animator;
 
+    public ParticleSystem particles;
+
+    float JHeight = 0;
+    bool knocked = false;
+
     public void Awake()
     {
         if (boxCollider == null)
@@ -116,6 +121,8 @@ public class Enemy : MonoBehaviour
 
         Vector3 scale = healthBar.transform.localScale;
         healthBar.transform.localScale = new Vector3((health / maxHealth) * hScale, scale.y , scale.z);
+
+        particles.Play();
     }
 
     public void CheckIfTrigger()
