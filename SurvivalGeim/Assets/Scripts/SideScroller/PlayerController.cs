@@ -202,7 +202,8 @@ public class PlayerController : MonoBehaviour
             //CameraFollow.instance.block = true;
             control = false;
             JumpDetected(position.x * power);
-        }));    
+        }));
+        particles.Play();
     }
 
 
