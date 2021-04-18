@@ -14,6 +14,7 @@ TagManager:
   - Interactable
   - Punch
   - Projectile
+  - Bouncy
   layers:
   - Default
   - TransparentFX

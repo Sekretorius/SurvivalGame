@@ -15,11 +15,14 @@ public class Projectile : MonoBehaviour
     public bool rotatable = true;
     public KeyCode keyCode;
 
+    public float damageRate = 0.5f;
+    
 
     public SpriteRenderer renderer;
     public GameObject particles;
     public CircleCollider2D collider;
 
+    private float damageRateElapsedTime = 0;
     private Rigidbody2D rigidBody;
     // Start is called before the first frame update
     void Start()
@@ -29,15 +32,24 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, maxDistance / projectileSpeed);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isHero && collision.tag == "Enemy")
+        if (damageRateElapsedTime <= 0)
         {
-            collision.GetComponent<Enemy>().ReduceHealth(damage);
-            StartCoroutine(WaitForSound());
+            if (isHero && collision.tag == "Enemy")
+            {
+                collision.GetComponent<Enemy>().ReduceHealth(damage);
+                StartCoroutine(WaitForSound());
+            }
+            else if (!isHero && collision.tag == "Player")
+                StartCoroutine(WaitForSound());
+
+            damageRateElapsedTime = damageRate;
         }
-        else if (!isHero && collision.tag == "Player")
-            StartCoroutine(WaitForSound());
+        else
+        {
+            damageRateElapsedTime -= Time.deltaTime;
+        }
     }
 
     private IEnumerator WaitForSound()

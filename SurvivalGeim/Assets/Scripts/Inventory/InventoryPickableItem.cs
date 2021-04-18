@@ -6,88 +6,88 @@ using UnityEngine.UI;
 using AnimationSystem;
 using System;
 
-public class InventoryPickableItem : PickableItem
+namespace InteractionSystem
 {
-    [SerializeField]
-    private InventoryItem inventoryItemData;
-    [SerializeField]
-    private SpriteRenderer itemSprite;
-    [SerializeField]
-    private int itemAmount;
-    [SerializeField]
-    private FadeAnimation fadeAnimation;
-
-    [SerializeField]
-    private Image pickButtonPosition;
-
-    public int ItemAmount => itemAmount;
-    public InventoryItem InventoryItem => inventoryItemData;
-
-    protected override void Start()
+    public class InventoryPickableItem : Interactable
     {
-        base.Start();
-        fadeAnimation.SpriteRenderer = itemSprite;
-        fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
-    }
+        [SerializeField]
+        private InventoryItem inventoryItemData;
+        [SerializeField]
+        private SpriteRenderer itemSprite;
+        [SerializeField]
+        private int itemAmount;
+        [SerializeField]
+        private FadeAnimation fadeAnimation;
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (IsPicked) return;
-        if (!inventoryItemData.Interactable && !collision.collider.isTrigger && collision.collider.name.Equals("Player"))
+        public int ItemAmount => itemAmount;
+        public InventoryItem InventoryItem => inventoryItemData;
+
+        protected override void Start()
         {
-            AddToInventory();
+            base.Start();
+            fadeAnimation.SpriteRenderer = itemSprite;
+            fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
         }
-    }
-    public override void Interact()
-    {
-        if (IsPicked) return;
-        if (inventoryItemData.Interactable)
-        {
-            AddToInventory();
-        }
-    }
-    private void AddToInventory()
-    {
-        IsPicked = true;
-        fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
-        fadeAnimation.StartAnimation();
-        InventoryManager.Instance.AddToInventory(this);
-        itemCollider.enabled = false;
-    }
-    public void SetInteractionState(bool state)
-    {
-        pickButtonPosition?.gameObject.SetActive(state);
-    }
 
-    private void OnValidate()
-    {
-        if (inventoryItemData != null) 
+        protected override void OnCollisionEnter2D(Collision2D collision)
         {
-            itemSprite.sprite = inventoryItemData.ItemSprite;
-            itemAmount = inventoryItemData.Amount;
+            if (IsPicked) return;
+            if (!inventoryItemData.Interactable && !collision.collider.isTrigger && collision.collider.name.Equals("Player"))
+            {
+                AddToInventory();
+            }
         }
-    }
-
-    public void SetData(InventoryItem inventoryItem, int count)
-    {
-        if (inventoryItem == null) return;
-
-        inventoryItemData = inventoryItem;
-        itemSprite.sprite = inventoryItem.ItemSprite;
-        if (inventoryItem.Interactable)
+        public override void Interact()
         {
-            gameObject.tag = "Interactable";
+            if (IsPicked) return;
+            if (inventoryItemData.Interactable)
+            {
+                AddToInventory();
+            }
         }
-        int layerNumber = 0;
-        int layer = inventoryItem.LayerMask.value;
-        while (layer > 0)
+        private void AddToInventory()
         {
-            layer = layer >> 1;
-            layerNumber++;
+            IsPicked = true;
+            fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
+            fadeAnimation.StartAnimation();
+            InventoryManager.Instance.AddToInventory(InventoryItem, ItemAmount);
+            itemCollider.enabled = false;
         }
-        gameObject.layer = layerNumber-1;
-        itemAmount = count;
 
-        itemCollider = gameObject.AddComponent<BoxCollider2D>();
+        public void SetData(InventoryItem inventoryItem, int count)
+        {
+            if (inventoryItem == null) return;
+
+            inventoryItemData = inventoryItem;
+            itemSprite.sprite = inventoryItem.ItemSprite;
+            if (inventoryItem.Interactable)
+            {
+                gameObject.tag = "Interactable";
+            }
+
+            int layer = inventoryItem.LayerMask;
+            gameObject.layer = layer;
+            itemAmount = count;
+
+            itemCollider = gameObject.AddComponent<BoxCollider2D>();
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (inventoryItemData != null)
+            {
+                itemSprite.sprite = inventoryItemData.ItemSprite;
+                itemAmount = inventoryItemData.Amount;
+            }
+        }
+        [ContextMenu("Reset data")]
+        public void ResetData()
+        {
+            inventoryItemData = null;
+            itemSprite.sprite = null;
+            OnValidate();
+        }
+#endif
     }
 }

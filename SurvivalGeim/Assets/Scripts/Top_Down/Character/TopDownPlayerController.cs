@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using InteractionSystem;
 public class TopDownPlayerController : TopDownMovementController
 {
     [SerializeField]
@@ -89,10 +89,10 @@ public class TopDownPlayerController : TopDownMovementController
         if(collision.tag == "Interactable")
         {
             //to do: create interface with interactable;
-            InventoryPickableItem item = collision.GetComponent<InventoryPickableItem>();
-            if(item != null)
+            Interactable interactable = collision.GetComponent<Interactable>();
+            if(interactable != null)
             {
-                JoinPickableItemQueue(item);
+                JoinInteractableQueue(interactable);
             }
         }
     }
@@ -100,46 +100,46 @@ public class TopDownPlayerController : TopDownMovementController
     {
         if (collision.tag == "Interactable")
         {
-            InventoryPickableItem item = collision.GetComponent<InventoryPickableItem>();
-            if (item != null)
+            Interactable interactable = collision.GetComponent<Interactable>();
+            if (interactable != null)
             {
-                RemovePickableItemFromQueue(item);
+                RemoveInteractableFromQueue(interactable);
             }
         }
     }
 
-    private LinkedList<InventoryPickableItem> interactableItems = new LinkedList<InventoryPickableItem>();
+    private LinkedList<Interactable> interactables = new LinkedList<Interactable>();
 
     private void Interact()
     {
-        if(interactableItems.Count > 0)
+        if(interactables.Count > 0)
         {
-            InventoryPickableItem item = interactableItems.First.Value;
-            RemovePickableItemFromQueue(item);
-            item.Interact();
+            Interactable interactable = interactables.First.Value;
+            RemoveInteractableFromQueue(interactable);
+            interactable.Interact();
         }
     }
     protected override void UpdateOnMove()
     {
-        UpdatePickableItemDistances();
+        UpdateInteractableDistances();
     }
 
-    public void JoinPickableItemQueue(InventoryPickableItem item)
+    public void JoinInteractableQueue(Interactable interactable)
     {
-        interactableItems.AddLast(item);
-        UpdatePickableItemDistances();
+        interactables.AddLast(interactable);
+        UpdateInteractableDistances();
     }
 
-    public void UpdatePickableItemDistances()
+    public void UpdateInteractableDistances()
     {
-        if (interactableItems.Count > 0)
+        if (interactables.Count > 0)
         {
-            LinkedListNode<InventoryPickableItem> first = interactableItems.First;
-            LinkedListNode<InventoryPickableItem> newFirst = first;
+            LinkedListNode<Interactable> first = interactables.First;
+            LinkedListNode<Interactable> newFirst = first;
             Vector2 playerPosition = transform.position;
             float shortestDistance = Vector2.Distance(playerPosition, first.Value.transform.position);
 
-            for (LinkedListNode<InventoryPickableItem> current = interactableItems.First; current != null; current = current.Next)
+            for (LinkedListNode<Interactable> current = interactables.First; current != null; current = current.Next)
             {
                 float nodeDistance = Vector2.Distance(playerPosition, current.Value.transform.position);
                 if (nodeDistance < shortestDistance)
@@ -150,8 +150,8 @@ public class TopDownPlayerController : TopDownMovementController
             }
             if (first != newFirst)
             {
-                interactableItems.Remove(newFirst);
-                interactableItems.AddFirst(newFirst);
+                interactables.Remove(newFirst);
+                interactables.AddFirst(newFirst);
             }
             interactionButton?.gameObject.SetActive(true);
         }
@@ -160,15 +160,15 @@ public class TopDownPlayerController : TopDownMovementController
             interactionButton?.gameObject.SetActive(false);
         }
     }
-    public void RemovePickableItemFromQueue(InventoryPickableItem item)
+    public void RemoveInteractableFromQueue(Interactable interactable)
     {
-        if (interactableItems.Contains(item))
+        if (interactables.Contains(interactable))
         {
-            InventoryPickableItem firstItem = interactableItems.First.Value;
-            interactableItems.Remove(item);
-            if (firstItem == item)
+            Interactable firstItem = interactables.First.Value;
+            interactables.Remove(interactable);
+            if (firstItem == interactable)
             {
-                UpdatePickableItemDistances();
+                UpdateInteractableDistances();
             }
         }
     }

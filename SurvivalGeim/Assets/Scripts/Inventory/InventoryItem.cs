@@ -22,7 +22,8 @@ namespace InventorySystem
         [SerializeField]
         private bool isPicked = false;
         [SerializeField]
-        private LayerMask layerMask;
+        [Min(0)]
+        private int layerMask;
 
         [SerializeField]
         private Vector3 spriteSize = Vector3.one;
@@ -33,7 +34,7 @@ namespace InventorySystem
         public Sprite ItemSprite => itemSprite;
         public bool CanBeStacked => canBeStacked;
         public bool Interactable => isPicked;
-        public LayerMask LayerMask => layerMask;
+        public int LayerMask => layerMask;
         public Vector3 SpriteSize => spriteSize;
     }
 

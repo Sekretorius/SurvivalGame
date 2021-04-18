@@ -78,9 +78,30 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                 moveVelocity = moveSpeed;
 
+            if (moveVelocity > 0)
+            {
+                sprite.flipX = false;
+                SwapArms(0);
+            }
+            else if(moveVelocity < 0)
+            {
+                sprite.flipX = true;
+                SwapArms(180);
+            }
+
             if (body.position.y < JHeight)
                 resetPos();
           
+
+            //edited region
+            if(body.position.y - startHeight > maxBounce)
+            {
+                body.transform.position = new Vector2(body.transform.position.x, startHeight + maxBounce);
+                body.velocity = new Vector2(moveVelocity, 0);
+            }
+            //edited region
+
+
             body.velocity = new Vector2(moveVelocity, body.velocity.y);
 
             moveVelocity = 0;
@@ -96,6 +117,37 @@ public class PlayerController : MonoBehaviour
         playerPos = boxCollider.bounds.center;
 
     }
+
+
+    //edited region
+    private float startHeight = 0;
+    [SerializeField]
+    private float maxBounce = 3f;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CheckCollisionCollider(collision);
+    }
+    private void CheckCollisionCollider(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bouncy")
+        {
+            bool ground = false;
+            foreach (ContactPoint2D contactPoint2D in collision.contacts)
+            {
+                if (contactPoint2D.normal.y >= 0.9f)
+                {
+                    ground = true;
+                    break;
+                }
+            }
+            if (ground)
+            {
+                startHeight = body.position.y;
+            }
+        }
+    }
+    //edited region
+
 
     public void OnDrawGizmos()
     {

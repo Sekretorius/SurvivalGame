@@ -4,7 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using AnimationSystem;
-public class Coin : PickableItem
+using InteractionSystem;
+
+public class Coin : Interactable
 {
     [SerializeField]
     private int minValue = 1;
@@ -23,7 +25,7 @@ public class Coin : PickableItem
     {
         base.Start();
         fadeAnimation.SpriteRenderer = spriteRenderer;
-        fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); } );
+        fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {

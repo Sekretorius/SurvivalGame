@@ -18,9 +18,7 @@ MonoBehaviour:
   itemSprite: {fileID: 6842953538963076023, guid: 53c20a5b9f181b34595604a8f06e7312, type: 3}
   canBeStacked: 0
   isPicked: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1024
+  layerMask: 10
   spriteSize: {x: 1, y: 1, z: 1}
   effects: []
   equiptableType: 1

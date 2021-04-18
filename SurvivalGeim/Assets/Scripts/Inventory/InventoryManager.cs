@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using InteractionSystem;
 
 namespace InventorySystem
 {
@@ -11,6 +13,11 @@ namespace InventorySystem
 
         [SerializeField]
         private GameObject palyerInvetoryView;
+
+        [SerializeField]
+        private Image inventoryMainFrame;
+        [SerializeField]
+        private Image inventoryEquiptableFrame;
 
         [SerializeField]
         private List<InventorySlot> inventorySlots = new List<InventorySlot>();
@@ -24,27 +31,16 @@ namespace InventorySystem
         [SerializeField]
         private GameObject itemDropPrefab;
 
-        private List<KeyCode> slotKeys = new List<KeyCode>()
-        {
-            KeyCode.Alpha1,
-            KeyCode.Alpha2,
-            KeyCode.Alpha3,
-            KeyCode.Alpha4,
-            KeyCode.Alpha5,
-            KeyCode.Alpha6,
-            KeyCode.Alpha7,
-            KeyCode.Alpha8
-        };
-
         private Dictionary<int, InventorySlot> inventoryItemSlots = new Dictionary<int, InventorySlot>();
         private Dictionary<int, InventorySlot> equiptableItemSlots = new Dictionary<int, InventorySlot>();
 
-        private Queue<InventoryPickableItem> pickableItems = new Queue<InventoryPickableItem>();
-
         private int selectedSlotId = -1;
+        private int selectedEquiptableSlotId = -1;
 
         public Sprite PickButtonSprite => pickButtonSprite;
 
+        [SerializeField]
+        private bool isSavingEnabled = false;
         private void Awake()
         {
             if (Instance == null)
@@ -79,20 +75,240 @@ namespace InventorySystem
 
         private void Update()
         {
-            for(int i = 0; i < slotKeys.Count; i++)
+
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-                if (Input.GetKeyDown(slotKeys[i]))
-                {
-                    SelectSlot(i);
-                }
+                int nextId = selectedSlotId + 1 < inventoryItemSlots.Count ? selectedSlotId + 1 : 0;
+                SelectSlot(nextId);
             }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                int nextId = selectedSlotId - 1 >= 0 ? selectedSlotId - 1 : inventoryItemSlots.Count - 1;
+                SelectSlot(nextId);
+            }
+
             if (Input.GetKeyDown(KeyCode.I))
             {
-                palyerInvetoryView.SetActive(!palyerInvetoryView.activeInHierarchy);
+                SetEquiptableInventoryState(!palyerInvetoryView.activeInHierarchy);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetEquiptableInventoryState(false);
             }
             if (Input.GetKeyDown(KeyCode.Q) && selectedSlotId >= 0)
             {
                 DropItem(inventoryItemSlots[selectedSlotId]);
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                CheckSlot(Input.mousePosition);
+            }
+
+            if (TopDownPlayerController.Instance != null)
+            {
+                CheckInventoryUICollision(TopDownPlayerController.Instance.gameObject.transform.position);
+            }
+            if (PlayerController.instance != null)
+            {
+                CheckInventoryUICollision(PlayerController.instance.gameObject.transform.position);
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                SaveData();
+                LoadData();
+            }
+        }
+
+#region Save system
+        private const string MainSaveKey = "_InventorySave";
+        private const string NotEquiptedItemCountKey = "_notEquiptedCount";
+        private const string EquiptedItemCountKey = "_notEquiptedCount";
+        private const string SlotSaveKey = "_slot_";
+        private int saveId = 0;
+        public string InventorySaveKey 
+        { 
+            get
+            {
+                return saveId + MainSaveKey;
+            } 
+        }
+        public void SaveData()
+        {
+            int notEquiptedItemCount = 0; 
+            int equiptedItemCount = 0;
+            int slotId = 0;
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.InventoryItem != null)
+                {
+                    InventoryItemSave inventoryItemSave = new InventoryItemSave(slot, SlotType.MainInventorySlot, slotId);
+                    string jsonLine = JsonUtility.ToJson(inventoryItemSave);
+                    PlayerPrefs.SetString(InventorySaveKey + SlotSaveKey + slotId, jsonLine);
+                    notEquiptedItemCount++;
+                }
+                slotId++;
+            }
+            foreach (InventorySlot slot in equiptableSlots)
+            {
+                if (slot.InventoryItem != null)
+                {
+                    InventoryItemSave inventoryItemSave = new InventoryItemSave(slot, SlotType.MainInventorySlot, slotId);
+                    string jsonLine = JsonUtility.ToJson(inventoryItemSave);
+                    PlayerPrefs.SetString(InventorySaveKey + SlotSaveKey + slotId, jsonLine);
+                    equiptedItemCount++;
+                }
+                slotId++;
+            }
+
+            PlayerPrefs.SetInt(InventorySaveKey + NotEquiptedItemCountKey, notEquiptedItemCount);
+            PlayerPrefs.SetInt(InventorySaveKey + EquiptedItemCountKey, equiptedItemCount);
+            PlayerPrefs.Save();
+        }
+        public void LoadData()
+        {
+            int notEquiptedItemCount = PlayerPrefs.GetInt(InventorySaveKey + NotEquiptedItemCountKey, 0);
+            int equiptedItemCount = PlayerPrefs.GetInt(InventorySaveKey + EquiptedItemCountKey, 0);
+            int slotId = 0;
+            List<InventoryItemSave> mainSlots = new List<InventoryItemSave>();
+            List<InventoryItemSave> equiptableSlots = new List<InventoryItemSave>();
+
+            for (int i = 0; i < notEquiptedItemCount; i++)
+            {
+                string saveJsonLine = PlayerPrefs.GetString(InventorySaveKey + SlotSaveKey + slotId, null);
+                slotId++;
+                if (saveJsonLine == null) continue;
+
+                InventoryItemSave savedData = JsonUtility.FromJson<InventoryItemSave>(saveJsonLine);
+                mainSlots.Add(savedData);
+            }
+            for (int i = 0; i < equiptedItemCount; i++)
+            {
+                string saveJsonLine = PlayerPrefs.GetString(InventorySaveKey + SlotSaveKey + slotId, null);
+                slotId++;
+                if (saveJsonLine == null) continue;
+
+                InventoryItemSave savedData = JsonUtility.FromJson<InventoryItemSave>(saveJsonLine);
+                equiptableSlots.Add(savedData);
+            }
+        }
+
+        internal enum SlotType { MainInventorySlot, EquiptableSlot}
+        [Serializable]
+        internal class InventoryItemSave
+        {
+            public int SlotId = 0;
+            public InventoryItem InventoryItem;
+            public int ItemCount;
+            public SlotType SlotType;
+            public InventoryItemSave(InventorySlot slot, SlotType slotType, int slotId)
+            {
+                InventoryItem = slot.InventoryItem;
+                ItemCount = slot.ItemCount;
+                SlotType = slotType;
+                SlotId = slotId;
+            }
+        }
+#endregion
+        public void CheckInventoryUICollision(Vector3 worldPosition)
+        {
+            Vector2 offset = new Vector2(0.5f, 0.5f);
+            List<Vector2> screenPoints = new List<Vector2>()
+            {
+                Camera.main.WorldToScreenPoint(new Vector2(worldPosition.x + offset.x, worldPosition.y + offset.y)),
+                Camera.main.WorldToScreenPoint(new Vector2(worldPosition.x - offset.x, worldPosition.y - offset.y)),
+                Camera.main.WorldToScreenPoint(new Vector2(worldPosition.x - offset.x, worldPosition.y + offset.y)),
+                Camera.main.WorldToScreenPoint(new Vector2(worldPosition.x + offset.x, worldPosition.y - offset.y))
+            };
+
+            foreach (Vector2 screenPoint in screenPoints) {
+
+                if (RectTransformUtility.RectangleContainsScreenPoint(inventoryMainFrame.rectTransform, screenPoint))
+                {
+                    FadeInventory(true);
+                    return;
+                }
+            }
+            FadeInventory(false);
+        }
+
+        public void FadeInventory(bool isFadingIn)
+        {
+            float alpha = 1;
+            if (isFadingIn)
+            {
+                alpha = 0.25f;
+            }
+
+            foreach (InventorySlot slot in inventoryItemSlots.Values)
+            {
+                slot.SetAlpha(alpha);
+            }
+            foreach (InventorySlot slot in equiptableItemSlots.Values)
+            {
+                slot.SetAlpha(alpha);
+            }
+
+            inventoryMainFrame.color = new Color(inventoryMainFrame.color.r, inventoryMainFrame.color.g, inventoryMainFrame.color.b, alpha);
+            inventoryEquiptableFrame.color = new Color(inventoryEquiptableFrame.color.r, inventoryEquiptableFrame.color.g, inventoryEquiptableFrame.color.b, alpha);
+
+        }
+
+        public void SetEquiptableInventoryState(bool state)
+        {
+            palyerInvetoryView.SetActive(state);
+            if (palyerInvetoryView.activeInHierarchy)
+            {
+                if (selectedEquiptableSlotId >= 0)
+                {
+                    equiptableItemSlots[selectedEquiptableSlotId].SetSelection(false);
+                    selectedEquiptableSlotId = -1;
+                }
+            }
+        }
+        public void CheckSlot(Vector2 screenPoint)
+        {
+            foreach(int slotId in inventoryItemSlots.Keys)
+            {
+                if(inventoryItemSlots[slotId] != null)
+                {
+                    RectTransform imageTransform = inventoryItemSlots[slotId].SelectionField;
+
+                    if(RectTransformUtility.RectangleContainsScreenPoint(imageTransform, screenPoint))
+                    {
+                        SelectSlot(slotId);
+                        return;
+                    }
+                }
+            }
+            foreach (int slotId in equiptableItemSlots.Keys)
+            {
+                if (equiptableItemSlots[slotId] != null)
+                {
+                    RectTransform imageTransform = equiptableItemSlots[slotId].SelectionField;
+
+                    if (RectTransformUtility.RectangleContainsScreenPoint(imageTransform, screenPoint))
+                    {
+                        if (selectedEquiptableSlotId != slotId)
+                        {
+                            if (selectedEquiptableSlotId != -1)
+                            {
+                                equiptableItemSlots[selectedEquiptableSlotId].SetSelection(false);
+                            }
+                            selectedEquiptableSlotId = slotId;
+                            equiptableItemSlots[slotId].SetSelection(true);
+                        }
+                        else
+                        {
+                            if (equiptableItemSlots[selectedEquiptableSlotId].InventoryItem != null)
+                            {
+                                AddToInventory(equiptableItemSlots[selectedEquiptableSlotId].InventoryItem, equiptableItemSlots[selectedEquiptableSlotId].ItemCount);
+                                ReleaseSlot(equiptableItemSlots[selectedEquiptableSlotId]);
+                            }
+                        }
+                        return;
+                    }
+                }
             }
         }
         public void SelectSlot(int slotId)
@@ -151,7 +367,7 @@ namespace InventorySystem
             }
         }
 
-        public void AddToInventory(InventoryPickableItem inventoryPickableItem, int slotId = 0)
+        public void AddToInventory(InventoryItem inventoryItem, int amount, int slotId = 0)
         {
             InventorySlot inventorySlot;
             if (inventoryItemSlots.ContainsKey(slotId))
@@ -167,20 +383,20 @@ namespace InventorySystem
             {
                 DropItem(inventorySlot);
             }
-            inventorySlot.InventoryItem = inventoryPickableItem.InventoryItem;
-            inventorySlot.ItemCount = inventoryPickableItem.ItemAmount;
+            inventorySlot.InventoryItem = inventoryItem;
+            inventorySlot.ItemCount = amount;
         }
 
-        public void AddToInventory(InventoryPickableItem inventoryPickableItem)
+        public void AddToInventory(InventoryItem inventoryItem, int amount)
         {
             int firstFreeSlotId = inventoryItemSlots.Count;
 
             for(int i = 0; i < inventoryItemSlots.Keys.Count; i++)
             {
                 InventorySlot slot = inventoryItemSlots[i];
-                if (inventoryPickableItem.InventoryItem.CanBeStacked && slot.InventoryItem != null && slot.InventoryItem.ItemName == inventoryPickableItem.InventoryItem.ItemName)
+                if (inventoryItem.CanBeStacked && slot.InventoryItem != null && slot.InventoryItem.ItemName == inventoryItem.ItemName)
                 {
-                    slot.ItemCount += inventoryPickableItem.ItemAmount;
+                    slot.ItemCount += amount;
                     return;
                 }
                 if(slot.InventoryItem == null && i < firstFreeSlotId)
@@ -190,11 +406,11 @@ namespace InventorySystem
             }
             if (inventoryItemSlots[selectedSlotId].InventoryItem != null && firstFreeSlotId != inventoryItemSlots.Count)
             {
-                AddToInventory(inventoryPickableItem, firstFreeSlotId);
+                AddToInventory(inventoryItem, amount, firstFreeSlotId);
             }
             else
             {
-                AddToInventory(inventoryPickableItem, selectedSlotId);
+                AddToInventory(inventoryItem, amount, selectedSlotId);
             }
         }
 
@@ -205,10 +421,15 @@ namespace InventorySystem
                 InventoryPickableItem pickableItem = Instantiate(itemDropPrefab).GetComponent<InventoryPickableItem>();
                 if (TopDownPlayerController.Instance != null)
                 {
-                    pickableItem.transform.position = TopDownPlayerController.Instance.transform.position;
+                    if(inventorySlot.InventoryItem.LayerMask == 10)
+                    {
+                        //to do: find empty position from player position
+                        pickableItem.transform.position = TopDownPlayerController.Instance.transform.position;
+                    }
                 }
                 else if (PlayerController.instance != null)
                 {
+                    //to do: ??? drop item in side scroller
                     //pickableItem.transform.position = PlayerController.instance.transform.position;
                 }
                 pickableItem.SetData(inventorySlot.InventoryItem, inventorySlot.ItemCount);

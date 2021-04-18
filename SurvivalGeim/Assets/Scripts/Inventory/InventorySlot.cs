@@ -14,6 +14,10 @@ namespace InventorySystem
         private Image slotItemImage;
         [SerializeField]
         private Image selectionImage;
+
+        [SerializeField]
+        private RectTransform selectionField;
+
         [SerializeField]
         private TextMeshProUGUI amountText;
 
@@ -23,6 +27,7 @@ namespace InventorySystem
 
         private int itemCount = 0;
 
+        public RectTransform SelectionField => selectionField;
         public EquiptableType EquiptableType => equiptableType; 
         public int ItemCount { 
             get 
@@ -85,6 +90,13 @@ namespace InventorySystem
         {
             selectionImage?.gameObject.SetActive(state);
         }
+
+        public void SetAlpha(float alpha)
+        {
+            slotItemImage.color = new Color(slotItemImage.color.r, slotItemImage.color.g, slotItemImage.color.b, alpha);
+            selectionImage.color = new Color(selectionImage.color.r, selectionImage.color.g, selectionImage.color.b, alpha);
+        }
+
         [ContextMenu("Fit")]
         public void Fit()
         {
