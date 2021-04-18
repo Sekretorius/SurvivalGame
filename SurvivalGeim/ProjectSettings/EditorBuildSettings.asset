@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SideScroll_Forest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Top-Down.unity
-    guid: e0d0eb09e565ed64f83ebf78ac2960db
+    path: Assets/Scenes/SideScroll_Beach.unity
+    guid: 2208b0224400282429c9c8a141d842b5
   - enabled: 1
     path: Assets/Scenes/SideScroll_Cave.unity
     guid: 40a037e3a56e64e4286d1bf0a6bca1ec

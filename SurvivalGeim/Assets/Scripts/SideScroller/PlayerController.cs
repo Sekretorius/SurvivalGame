@@ -243,6 +243,7 @@ public class PlayerController : MonoBehaviour
         if (this != null) 
         { 
             block = false;
+            body.constraints = RigidbodyConstraints2D.None;
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 	}

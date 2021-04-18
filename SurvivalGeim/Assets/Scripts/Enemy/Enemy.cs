@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     bool knockBack = false;
 
-    bool block = false;
+    public bool block = false;
 
     bool attack = true;
 
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0f, 10f)]
     public float triggerRange = 5;
+
 
     [SerializeField]
     public int damage = 10;
@@ -80,7 +82,20 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         hScale = healthBar.transform.localScale.x;
         Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
+        Debug.Log("Collisions ignored");
     }
+
+    //private void OnEnable()
+    //{
+
+    //    if (boxCollider == null)
+    //    {
+    //        boxCollider = gameObject.GetComponent<BoxCollider2D>();
+    //        Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
+    //    }
+
+
+    //}
 
     // Update is called once per frame
     void Update()
@@ -150,11 +165,14 @@ public class Enemy : MonoBehaviour
 
     public void CheckIfTrigger()
     {
-        if(Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= triggerRange && triggered == false)
-        {
-            triggered = true;
-            animator.SetBool("Triggered", triggered);
-        }
+        if (Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= triggerRange && triggered == false)
+            Trigger();
+    }
+
+    public void Trigger()
+    {
+        triggered = true;
+        animator.SetBool("Triggered", triggered);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

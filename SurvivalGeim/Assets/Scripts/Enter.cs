@@ -12,6 +12,8 @@ public class Enter : MonoBehaviour
 
     public bool exit;
 
+    public bool canExit = true;
+
     public bool showIntro = false;
 
     [DraggablePoint] public Vector3 SpawnPosition;
@@ -23,7 +25,7 @@ public class Enter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (canExit && collision.tag == "Player")
         {
             if (exit)
             {

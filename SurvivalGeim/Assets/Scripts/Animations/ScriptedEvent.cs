@@ -14,16 +14,21 @@ public class ScriptedEvent : MonoBehaviour
 
     public CanvasGroup canvas;
 
+    public bool start = true;
+
     void Start()
     {
-        Init();
+        if(start)
+            Init();
     }
 
     public void Init()
     {
+        CameraFollow.instance.RefreshPosition();
         animator.SetTrigger("StartIntro");
         CameraFollow.instance.block = true;
         PlayerController.instance.block = true;
+
         canvas.alpha = 0;
     }
 
