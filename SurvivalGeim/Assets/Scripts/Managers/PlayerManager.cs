@@ -53,6 +53,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeHealth(int health)
     {
+        if(health < 0) StartCoroutine(HeroIcon.instance?.Injured());
         currentHealth += health;
         HealthBar.instance.SetHealth(currentHealth);
     }
