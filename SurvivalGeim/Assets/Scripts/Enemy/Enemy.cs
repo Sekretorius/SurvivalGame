@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = boxCollider.size.x;
+        offset = boxCollider.size.x / 2;
         health = maxHealth;
         hScale = healthBar.transform.localScale.x;
         Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
@@ -92,11 +92,16 @@ public class Enemy : MonoBehaviour
 
         if (Vector2.Distance(enemyPos, PlayerController.instance.playerPos) <= attackRange && attack)
             StartCoroutine(AttackStart());
+
+        if (knocked && body.position.y < JHeight)
+            resetPos();
+
+        
     }
 
     void FixedUpdate()
     {
-        if (triggered && Distance() > offset && !block)
+        if (triggered && Distance() > offset && !block && !knocked)
         {
             body.MovePosition(movement);
         }
@@ -105,6 +110,24 @@ public class Enemy : MonoBehaviour
             sprite.flipX = true;
         else
             sprite.flipX = false;
+    }
+
+    public void Knockback(float direction = 0, float strenght = 1)
+    {
+        body.gravityScale = strenght;
+
+        body.velocity = new Vector2(direction, 1);
+        JHeight = body.position.y;
+
+        knocked = true;
+        ///groundCollider.gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+    }
+
+    private void resetPos()
+    {
+        body.MovePosition(new Vector2(body.position.x, JHeight));
+        body.gravityScale = 0;
+        knocked = false;
     }
 
     public void ReduceHealth(float damageTaken)
@@ -139,6 +162,13 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Punch") {
             ReduceHealth(PlayerController.instance.punchStrengh);
             return;
+        }
+
+        if (collision.tag == "Projectile")
+        {
+            Debug.Log("Knocked");
+            //Knockback(collision.transform.position.x, collision.GetComponent<Projectile>().knockback);
+            Knockback(collision.transform.position.x);
         }
 
         // Knockback

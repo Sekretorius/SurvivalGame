@@ -12,6 +12,8 @@ public class Enter : MonoBehaviour
 
     public bool exit;
 
+    public bool showIntro = false;
+
     [DraggablePoint] public Vector3 SpawnPosition;
 
     void Awake()
