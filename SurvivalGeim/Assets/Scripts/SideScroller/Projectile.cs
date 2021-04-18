@@ -34,22 +34,22 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (damageRateElapsedTime <= 0)
+        if (isHero && collision.tag == "Enemy")
         {
-            if (isHero && collision.tag == "Enemy")
+
+            if (damageRateElapsedTime <= 0)
             {
                 collision.GetComponent<Enemy>().ReduceHealth(damage);
                 StartCoroutine(WaitForSound());
+                damageRateElapsedTime = damageRate;
             }
-            else if (!isHero && collision.tag == "Player")
-                StartCoroutine(WaitForSound());
-
-            damageRateElapsedTime = damageRate;
+            else
+            {
+                damageRateElapsedTime -= Time.deltaTime;
+            }
         }
-        else
-        {
-            damageRateElapsedTime -= Time.deltaTime;
-        }
+        else if (!isHero && collision.tag == "Player")
+            StartCoroutine(WaitForSound());
     }
 
     private IEnumerator WaitForSound()
