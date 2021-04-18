@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerProjectiles : MonoBehaviour
 {
-    public Transform firePosition;
-    public GameObject[] projectiles;
+    public Transform firePosition;    
     public float fireRate = 0.2F;
     public float maxCharge = 3f;
     public float maxScale = 4f;
@@ -13,10 +12,12 @@ public class PlayerProjectiles : MonoBehaviour
     private float myTime;
     private float chargeTime;
     private List<Projectile> projs = new List<Projectile>();
+    private GameObject[] projectiles;
 
     private void Start()
     {
-        for(int i = 0; i < projectiles.Length; i++)
+        projectiles = PlayerManager.instance.projectiles;
+        for (int i = 0; i < projectiles.Length; i++)
             projs.Add(projectiles[i].GetComponent<Projectile>());
         myTime = 0.0f;
         chargeTime = 0.0f;

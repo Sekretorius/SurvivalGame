@@ -390,84 +390,6 @@ Transform:
   m_Father: {fileID: 2906307108516327368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &885000684301387266
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2428859043829529086}
-  - component: {fileID: 2636174096475915353}
-  m_Layer: 0
-  m_Name: ManaRegen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2428859043829529086
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885000684301387266}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5465308551257068058}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2636174096475915353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885000684301387266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b5f91ea28a8904dbaa583e45df42ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCode: 113
-  manaRegenMultiplier: 10
-  duration: 10
-  cooldown: 10
---- !u!1 &1813083181932464830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5465308551257068058}
-  m_Layer: 0
-  m_Name: Skills
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5465308551257068058
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813083181932464830}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.27653, y: -1.5144463, z: -2.3701909}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2428859043829529086}
-  m_Father: {fileID: 2906307108516327368}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2906307108516327364
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +426,6 @@ Transform:
   m_Children:
   - {fileID: 3770106191646487730}
   - {fileID: 2021171178}
-  - {fileID: 5465308551257068058}
   - {fileID: 3991204495778075599}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -633,6 +554,7 @@ MonoBehaviour:
   punches: {fileID: 2021171177}
   punchStrengh: 2
   particles: {fileID: 8516403280889361994}
+  maxBounce: 3
 --- !u!114 &4037900809532290471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,9 +568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePosition: {fileID: 3770106191646487730}
-  projectiles:
-  - {fileID: 8533738127239662399, guid: f26aa5a8b04709a469281c7e3e2be653, type: 3}
-  - {fileID: 6535331057026809382, guid: 51fe20356d3a5ee488defbf8c55285b0, type: 3}
   fireRate: 0.3
   maxCharge: 3
   maxScale: 4
@@ -684,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skills:
-  - {fileID: 885000684301387266}
+  - {fileID: 0}
 --- !u!1 &6549090739587463676
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2906307108516327368}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &8516403280889361994
 ParticleSystem:

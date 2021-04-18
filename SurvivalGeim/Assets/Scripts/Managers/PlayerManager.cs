@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     public float currentMana;
     public float healthRegen = 1f;
     public float manaRegen = 2f;
+    public GameObject[] projectiles;
+    public GameObject[] skills;
 
     private float currentHealthRegen;
     private float currentManaRegen;

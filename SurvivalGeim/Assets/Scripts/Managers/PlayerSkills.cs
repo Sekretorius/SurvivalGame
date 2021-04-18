@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour
 {
-    public GameObject[] skills;
+    private GameObject[] skills;
+
+    private void Start()
+    {
+        skills = PlayerManager.instance.skills;        
+    }
 
     // Update is called once per frame
     void Update()
