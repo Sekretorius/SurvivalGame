@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 5ec0104bc27f9f843b770f8a0feb81d6, type: 3}
     - {fileID: 102900000, guid: 269493a7c1900054d9e44c951e6fecbf, type: 3}
     - {fileID: 102900000, guid: 12509f374774f4c44bde8faea45079e5, type: 3}
-    totalSpriteSurfaceArea: 1246041
+    totalSpriteSurfaceArea: 1249304
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -906,6 +906,10 @@ SpriteAtlas:
   - {fileID: 1572547907511873579, guid: 357c88a9b29e6c04191486bdaa21df80, type: 3}
   - {fileID: -4705262584102634792, guid: 357c88a9b29e6c04191486bdaa21df80, type: 3}
   - {fileID: 4589140708677626814, guid: 357c88a9b29e6c04191486bdaa21df80, type: 3}
+  - {fileID: -1144310634911421452, guid: a56a52bb950e87145960aa73d1a05c59, type: 3}
+  - {fileID: -1378521658571115459, guid: a56a52bb950e87145960aa73d1a05c59, type: 3}
+  - {fileID: -4023145912612234318, guid: a56a52bb950e87145960aa73d1a05c59, type: 3}
+  - {fileID: 4790031771275356536, guid: a56a52bb950e87145960aa73d1a05c59, type: 3}
   - {fileID: -5053542106496647493, guid: e71699bb0ff1576438b1023d42633427, type: 3}
   - {fileID: -5198860811483046723, guid: e71699bb0ff1576438b1023d42633427, type: 3}
   - {fileID: 3640922738134552405, guid: e71699bb0ff1576438b1023d42633427, type: 3}
@@ -2164,6 +2168,10 @@ SpriteAtlas:
   - Earth-tileset_2
   - Earth-tileset_1
   - Earth-tileset_0
+  - Crown_1
+  - Crown_0
+  - Crown_3
+  - Crown_2
   - Background_Tiles_22
   - Background_Tiles_23
   - Background_Tiles_20
