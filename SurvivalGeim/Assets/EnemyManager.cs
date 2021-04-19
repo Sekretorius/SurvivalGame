@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour
         foreach (Enemy e in enemies)
         {
             e.block = true;
-            e.animator.StopPlayback();
+            //e.animator.StopPlayback();
         }
     }
 
@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
         foreach (Enemy e in enemies)
         {
             e.block = false;
-            e.animator.StartPlayback();
+            //e.animator.StartPlayback();
         }
     }
 

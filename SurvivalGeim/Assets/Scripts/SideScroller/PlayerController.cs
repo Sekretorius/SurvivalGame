@@ -225,8 +225,10 @@ public class PlayerController : MonoBehaviour
         Quaternion q = punches.transform.localRotation;
         punches.transform.localRotation = new Quaternion(q.x, rotate, q.z,q.w);
         Vector3 p = punches.transform.localPosition;
-        Debug.Log(p);
-        punches.transform.localPosition = new Vector3(-p.x,p.y,p.z);
+        if(rotate == 0)
+            punches.transform.localPosition = new Vector3(Math.Abs(p.x),p.y,p.z);
+        else
+            punches.transform.localPosition = new Vector3(-p.x, p.y, p.z);
     }
 
     public void Block()

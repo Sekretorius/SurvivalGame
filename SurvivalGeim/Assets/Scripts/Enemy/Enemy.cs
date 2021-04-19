@@ -85,17 +85,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("Collisions ignored");
     }
 
-    //private void OnEnable()
-    //{
-
-    //    if (boxCollider == null)
-    //    {
-    //        boxCollider = gameObject.GetComponent<BoxCollider2D>();
-    //        Physics2D.IgnoreCollision(boxCollider, PlayerController.instance.boxCollider);
-    //    }
-
-
-    //}
 
     // Update is called once per frame
     void Update()
@@ -135,7 +124,6 @@ public class Enemy : MonoBehaviour
         JHeight = body.position.y;
 
         knocked = true;
-        ///groundCollider.gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
     }
 
     private void resetPos()

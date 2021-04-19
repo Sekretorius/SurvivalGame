@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using AnimationSystem;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(AnimationController))]
 public class AnimationControllerEditor : Editor
 {
@@ -175,3 +175,4 @@ public class AnimationControllerEditor : Editor
         }
     }
 }
+#endif
