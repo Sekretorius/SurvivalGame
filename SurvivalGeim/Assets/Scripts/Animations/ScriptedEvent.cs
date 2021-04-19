@@ -36,13 +36,14 @@ public class ScriptedEvent : MonoBehaviour
     {
         StartCoroutine(PlayAudioClip(delegate() 
         {
-            Song.Play();
+           // Song.Play();
         }
         ));
     }
 
     private IEnumerator PlayAudioClip(Action onEnd = null)
     {
+        IntroAudio.time = 44.5f;
         IntroAudio.Play();
 
         while (IntroAudio.isPlaying) yield return null;
