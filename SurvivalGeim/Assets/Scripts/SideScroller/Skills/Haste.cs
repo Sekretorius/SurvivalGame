@@ -37,12 +37,12 @@ public class Haste : MonoBehaviour, Skill
         {
             if (Input.GetKeyDown(keyCode))
             {
-                StartCoroutine(SetManaRegen());
+                StartCoroutine(SetPlayerSpeed());
             }
         }
     }
 
-    private IEnumerator SetManaRegen()
+    private IEnumerator SetPlayerSpeed()
     {
         active = true;
         PlayerController.instance.moveSpeed *= heroSpeedMultiplier;
