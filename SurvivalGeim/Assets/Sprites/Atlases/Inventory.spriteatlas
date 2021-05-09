@@ -44,13 +44,15 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c3cfd51b4b5b92248a7b1bbe3327c499, type: 3}
-    totalSpriteSurfaceArea: 43495
+    totalSpriteSurfaceArea: 44775
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 4033193542459264011, guid: cc1aab228061d3549a619f5768251181, type: 3}
+  - {fileID: 2530564911472380330, guid: faa7d7329b1414641be8144f04b65e7c, type: 3}
+  - {fileID: 1763989116612304091, guid: faa7d7329b1414641be8144f04b65e7c, type: 3}
   - {fileID: -7457261150439661089, guid: 0793aec2ff96627498d1fd254fb5c50c, type: 3}
   - {fileID: -6772197952563378542, guid: 0793aec2ff96627498d1fd254fb5c50c, type: 3}
   - {fileID: 102555753762644538, guid: 0793aec2ff96627498d1fd254fb5c50c, type: 3}
@@ -150,6 +152,7 @@ SpriteAtlas:
   - {fileID: -8089482848176930447, guid: 2fb89f55f12891241a7dd7bb197e370d, type: 3}
   - {fileID: -8587018837747877448, guid: 2fb89f55f12891241a7dd7bb197e370d, type: 3}
   - {fileID: 4387888598896302981, guid: 9cdfdd566bc37b345b37131e0840734d, type: 3}
+  - {fileID: 21300000, guid: 88b19fa6dcf49594b8e818d5dac32c21, type: 3}
   - {fileID: -877189977295246818, guid: 3fcc573bdeaa6234994cff77fd4e0ad3, type: 3}
   - {fileID: -2844478248686667886, guid: 53c20a5b9f181b34595604a8f06e7312, type: 3}
   - {fileID: -4062147685746783090, guid: 53c20a5b9f181b34595604a8f06e7312, type: 3}
@@ -300,6 +303,8 @@ SpriteAtlas:
   - {fileID: -4446877862331424282, guid: 4c69c8ac62b06494c9bb5cd49a9e0430, type: 3}
   m_PackedSpriteNamesToIndex:
   - InvetoryFrame 1_0
+  - button_0
+  - button_1
   - PlayerInventory_1
   - PlayerInventory_0
   - PlayerInventory_3
@@ -399,6 +404,7 @@ SpriteAtlas:
   - items_v2_23
   - items_v2_22
   - InvetoryFrameBackground_0
+  - one_frame
   - Invetory_0
   - items_1_22
   - items_1_23

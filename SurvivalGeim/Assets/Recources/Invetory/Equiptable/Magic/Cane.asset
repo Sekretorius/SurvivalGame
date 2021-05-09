@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Old mans cane
   weight: 0
   amount: 1
-  itemSprite: {fileID: 1585665326018596484, guid: 53c20a5b9f181b34595604a8f06e7312, type: 3}
+  itemSprite: {fileID: -5690902447989670492, guid: 2fb89f55f12891241a7dd7bb197e370d, type: 3}
   canBeStacked: 0
   isPicked: 1
   layerMask: 10

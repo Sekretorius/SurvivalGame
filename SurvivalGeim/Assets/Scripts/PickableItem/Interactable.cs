@@ -10,7 +10,7 @@ namespace InteractionSystem
         [SerializeField]
         protected Collider2D itemCollider;
 
-        public bool IsPicked { get; set; }
+        public bool IsInteracted { get; set; }
 
         protected virtual void Awake()
         {

@@ -12,8 +12,16 @@ public class TopDownPlayerController : TopDownMovementController
 
     [SerializeField]
     private Image interactionButton;
-    public static TopDownPlayerController Instance { get; private set; }
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip stepSound;
+    [SerializeField]
+    float stepInterval = 0.1f;
+    float passedTime = 0;
+    public static TopDownPlayerController Instance { get; private set; }
+    
     private void Awake()
     {
         if(Instance == null)
@@ -25,6 +33,8 @@ public class TopDownPlayerController : TopDownMovementController
             Destroy(this);
         }
         interactionButton?.gameObject.SetActive(false);
+
+        passedTime = stepInterval;
     }
     public void UpdateSpriteLayer(int layer)
     {
@@ -44,6 +54,7 @@ public class TopDownPlayerController : TopDownMovementController
 
         Animate();
 
+        passedTime += Time.deltaTime;
     }
 
     private void Animate()
@@ -115,7 +126,7 @@ public class TopDownPlayerController : TopDownMovementController
         if(interactables.Count > 0)
         {
             Interactable interactable = interactables.First.Value;
-            RemoveInteractableFromQueue(interactable);
+            //RemoveInteractableFromQueue(interactable);
             interactable.Interact();
         }
     }
@@ -173,5 +184,13 @@ public class TopDownPlayerController : TopDownMovementController
         }
     }
 
-
+    public void PlayStepSound(float voloume)
+    {
+        audioSource.volume = voloume;
+        if (passedTime >= stepInterval)
+        {
+            audioSource.PlayOneShot(stepSound);
+            passedTime = 0;
+        }
+    }
 }

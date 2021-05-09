@@ -19,19 +19,23 @@ namespace InteractionSystem
         [SerializeField]
         private FadeAnimation fadeAnimation;
 
+        private TransformAnimation transformAnimation; 
         public int ItemAmount => itemAmount;
         public InventoryItem InventoryItem => inventoryItemData;
 
         protected override void Start()
         {
             base.Start();
+
+
             fadeAnimation.SpriteRenderer = itemSprite;
+
             fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
         }
 
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
-            if (IsPicked) return;
+            if (IsInteracted) return;
             if (!inventoryItemData.Interactable && !collision.collider.isTrigger && collision.collider.name.Equals("Player"))
             {
                 AddToInventory();
@@ -39,7 +43,7 @@ namespace InteractionSystem
         }
         public override void Interact()
         {
-            if (IsPicked) return;
+            if (IsInteracted) return;
             if (inventoryItemData.Interactable)
             {
                 AddToInventory();
@@ -47,7 +51,7 @@ namespace InteractionSystem
         }
         private void AddToInventory()
         {
-            IsPicked = true;
+            IsInteracted = true;
             fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
             fadeAnimation.StartAnimation();
             InventoryManager.Instance.AddToInventory(InventoryItem, ItemAmount);
@@ -67,9 +71,20 @@ namespace InteractionSystem
 
             int layer = inventoryItem.LayerMask;
             gameObject.layer = layer;
-            itemAmount = count;
+            if (inventoryItem.CanBeStacked)
+            {
+                itemAmount = count;
+            }
 
             itemCollider = gameObject.AddComponent<BoxCollider2D>();
+        }
+
+        public void MoveTo(Vector3 end)
+        {
+            transformAnimation = new TransformAnimation(transform, .1f, end);
+            transformAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
+
+            transformAnimation.StartAnimation();
         }
 
 #if UNITY_EDITOR

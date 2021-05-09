@@ -29,7 +29,7 @@ public class Coin : Interactable
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (IsPicked)
+        if (IsInteracted)
         {
             return;
         }
@@ -37,7 +37,7 @@ public class Coin : Interactable
         {
             int value = Random.Range(minValue, maxValue);
             PlayerManager.instance.ChangeMoney(value);
-            IsPicked = true;
+            IsInteracted = true;
             fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
             fadeAnimation.StartAnimation();
         }
