@@ -28,10 +28,12 @@ public class Shop : MonoBehaviour
     }
     private void OnEnable()
     {
+        InventoryManager.Instance.gameObject.SetActive(false);
         OnItemButtonClick(firstSelected);
     }
     private void OnDisable()
     {
+        InventoryManager.Instance.gameObject.SetActive(true);
         selectedShopItem?.OnSelect(false);
         selectedShopItem = null;
     }
