@@ -650,6 +650,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e288e1bc8e2f0ed41bad3cb713c33f82, type: 3}
+--- !u!1 &410306657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8451994345578921209, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
+  m_PrefabInstance: {fileID: 442109664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &442109664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -658,17 +663,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1558574157, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
-      propertyPath: projectiles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: skills.Array.data[1]
+      value: 
+      objectReference: {fileID: 1869891570}
     - target: {fileID: 1558574157, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: projectiles.Array.data[1]
       value: 
       objectReference: {fileID: 6535331057026809382, guid: 51fe20356d3a5ee488defbf8c55285b0, type: 3}
-    - target: {fileID: 1558574157, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
-      propertyPath: projectiles.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 134659730789146776, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -716,6 +717,10 @@ PrefabInstance:
     - target: {fileID: 134659730789146782, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349588541865943188, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
+      propertyPath: heroSpeedMultiplier
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
@@ -1573,7 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049d892c511c58740b99adb8ccaf1428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 0}
+  skill: {fileID: 410306657}
 --- !u!1 &1172370337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,6 +2574,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1869891570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8609321694828883499, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
+  m_PrefabInstance: {fileID: 442109664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1905305424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,7 +3719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2124271710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3776,7 +3786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3582319188566967811, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4804061193985914092, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
       propertyPath: m_IsActive
