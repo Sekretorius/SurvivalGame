@@ -5027,6 +5027,7 @@ MonoBehaviour:
   chargeable: 1
   rotatable: 1
   keyCode: 49
+  barSprite: {fileID: 21300000, guid: b7decf357f76b7442b7b09956ba02695, type: 3}
   damageRate: 0.5
   renderer: {fileID: 6416155089264636194}
   particles: {fileID: 2951259967709581206}

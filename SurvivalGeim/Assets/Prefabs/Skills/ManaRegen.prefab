@@ -47,3 +47,4 @@ MonoBehaviour:
   manaRegenMultiplier: 10
   duration: 10
   cooldown: 10
+  sprite: {fileID: 21300000, guid: 2681b52cf15861d40b3357a8710e4597, type: 3}

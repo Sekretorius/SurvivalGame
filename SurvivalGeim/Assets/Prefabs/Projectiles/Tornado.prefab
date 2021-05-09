@@ -225,6 +225,7 @@ MonoBehaviour:
   chargeable: 0
   rotatable: 0
   keyCode: 50
+  barSprite: {fileID: 715368135737836640, guid: d3542f69bc431be4fadbc46142bbed08, type: 3}
   damageRate: 0.25
   renderer: {fileID: 6535331057026809380}
   particles: {fileID: 6854806385632353449}

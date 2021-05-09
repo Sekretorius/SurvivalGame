@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     public bool chargeable = true;
     public bool rotatable = true;
     public KeyCode keyCode;
+    public Sprite barSprite;
 
     public float damageRate = 0.5f;
     
