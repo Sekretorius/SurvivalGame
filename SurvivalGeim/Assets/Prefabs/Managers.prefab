@@ -67,10 +67,10 @@ MonoBehaviour:
   manaRegen: 2
   projectiles:
   - {fileID: 8533738127239662399, guid: f26aa5a8b04709a469281c7e3e2be653, type: 3}
-  - {fileID: 8609321694828883499}
+  - {fileID: 6535331057026809382, guid: 51fe20356d3a5ee488defbf8c55285b0, type: 3}
   skills:
   - {fileID: 8451994345578921209}
-  - {fileID: 1429913899611617666, guid: eb331cf7d5443bc4683adaec63c61583, type: 3}
+  - {fileID: 8609321694828883499}
   playerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &4981388400526633292
 GameObject:
@@ -114,6 +114,10 @@ PrefabInstance:
     - target: {fileID: 1429913899611617666, guid: eb331cf7d5443bc4683adaec63c61583, type: 3}
       propertyPath: m_Name
       value: Haste
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359660055808177981, guid: eb331cf7d5443bc4683adaec63c61583, type: 3}
+      propertyPath: heroSpeedMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3441290235324685650, guid: eb331cf7d5443bc4683adaec63c61583, type: 3}
       propertyPath: m_RootOrder
