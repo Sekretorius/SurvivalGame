@@ -1505,6 +1505,7 @@ GameObject:
   - component: {fileID: 8071581211393260284}
   - component: {fileID: 8071581211393260285}
   - component: {fileID: 8071581211393260282}
+  - component: {fileID: 2356787540188486848}
   m_Layer: 5
   m_Name: SideScroller_UI
   m_TagString: Untagged
@@ -1596,6 +1597,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &2356787540188486848
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071581211393260283}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8071581211780506957
 GameObject:
   m_ObjectHideFlags: 0
