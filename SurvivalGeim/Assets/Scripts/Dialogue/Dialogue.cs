@@ -96,6 +96,13 @@ public class Dialogue : MonoBehaviour
     public void EndDialogue()
     {
         Debug.Log("Ended");
+
+        // Move
+        if(TopDownPlayerController.Instance)
+            TopDownPlayerController.Instance.UnFreezeMovement();
+        else if(PlayerController.instance)
+            PlayerController.instance.Unblock();
+
         isSpeaking = false;
         DialogueController.instance.Disable();
     }

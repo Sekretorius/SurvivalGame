@@ -9,17 +9,30 @@ public class Speakable : Interactable
     public Dialogue dialogue;
 
     public bool isInRange = false;
+    public bool forceTalk = false;
+    public bool destroyAfter = false;
+    public bool playerMovement = true;
 
     private void Update()
     {
-        if(isInRange && dialogue && Input.GetKeyDown(KeyCode.E))
+        if(isInRange && dialogue && (Input.GetKeyDown(KeyCode.E) || forceTalk) )
         {
             if (dialogue.isSpeaking)
                 dialogue.Next();
             else
             {
+                forceTalk = false;
+
                 DialogueController.instance.Enable();
                 dialogue.StartDialogue();
+
+                if (!playerMovement)
+                {
+                    if(TopDownPlayerController.Instance)
+                        TopDownPlayerController.Instance.FreezeMovement();
+                    else if (PlayerController.instance)
+                        PlayerController.instance.Block();
+                }
             }
         }
     }
@@ -34,8 +47,11 @@ public class Speakable : Interactable
         if (collision.tag == "Player")
             if (dialogue.isSpeaking)
             {
-                dialogue.EndDialogue();
+                dialogue.EndDialogue();                
                 isInRange = false;
+
+                if (destroyAfter)
+                    Destroy(this);
             }
     }
 

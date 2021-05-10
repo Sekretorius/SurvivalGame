@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using InventorySystem;
 
 public class DialogueController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class DialogueController : MonoBehaviour
 
     [SerializeField]
     private GameObject Inventory;
+
+    [SerializeField]
+    public CanvasGroup UI;
 
     [SerializeField]
     public TextMeshProUGUI dialogueName;
@@ -34,16 +38,26 @@ public class DialogueController : MonoBehaviour
             Destroy(this);
     }
 
+    private void Start()
+    {
+        if (!Inventory && InventoryManager.Instance)
+            Inventory = InventoryManager.Instance.gameObject;
+    }
+
     public void Enable()
     {
+        if (Inventory) Inventory.SetActive(false);
+        if (UI) UI.alpha = 0;
+
         background.SetActive(true);
-        Inventory.SetActive(false);
     }
 
     public void Disable()
     {
         background.SetActive(false);
-        Inventory.SetActive(true);
+
+        if (Inventory) Inventory.SetActive(true);
+        if (UI) UI.alpha = 1;
     }
 
     public void SetName(string name)
@@ -66,12 +80,14 @@ public class DialogueController : MonoBehaviour
         if (speaker) 
         {
             playerFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 1f);
-            npcFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 0.2f);
+            if(npcFace.sprite)
+                npcFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 0.2f);
         }
         else
         {
             playerFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 0.2f);
-            npcFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 1f);
+            if (npcFace.sprite)
+                npcFace.color = new Color(playerFace.color.r, playerFace.color.g, playerFace.color.b, 1f);
         }
     }
 

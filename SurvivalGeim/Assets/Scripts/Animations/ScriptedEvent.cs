@@ -15,6 +15,8 @@ public class ScriptedEvent : MonoBehaviour
 
     public CanvasGroup canvas;
 
+    public Speakable target;
+
     public bool start = true;
 
     void Start()
@@ -63,6 +65,9 @@ public class ScriptedEvent : MonoBehaviour
 
         IntroAudio.volume = 0.05f;
         Song.volume = 0.05f;
-        canvas.alpha = 1;
+        //canvas.alpha = 1;
+
+        target.isInRange = true;
+        target.forceTalk = true;
     }
 }

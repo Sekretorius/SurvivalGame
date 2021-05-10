@@ -12,6 +12,8 @@ public class ScriptedIntro : MonoBehaviour
 
     public bool start = true;
 
+    public Speakable target;
+
     void Start()
     {
         if (start)
@@ -39,6 +41,7 @@ public class ScriptedIntro : MonoBehaviour
         if (InventoryManager.Instance)
             InventoryManager.Instance.gameObject.SetActive(true);
 
-        canvas.alpha = 1;
+        target.isInRange = true;
+        target.forceTalk = true;
     }
 }
