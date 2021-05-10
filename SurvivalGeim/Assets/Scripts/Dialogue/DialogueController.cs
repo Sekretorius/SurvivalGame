@@ -72,7 +72,13 @@ public class DialogueController : MonoBehaviour
 
     public void SetNpcImage(Sprite img)
     {
+        npcFace.enabled = true;
         npcFace.sprite = img;
+    }
+
+    public void DisableNpcImage()
+    {
+        npcFace.enabled = false;
     }
 
     public void SetImageVisibility(bool speaker)

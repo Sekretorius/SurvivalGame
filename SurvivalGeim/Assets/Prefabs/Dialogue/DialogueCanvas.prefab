@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 3555255649356112908}
   Inventory: {fileID: 0}
+  UI: {fileID: 0}
   dialogueName: {fileID: 3555255650022008558}
   dialogueTextBox: {fileID: 3555255649684901836}
   playerFace: {fileID: 3555255648706916046}
@@ -599,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

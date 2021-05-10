@@ -55,6 +55,8 @@ public class Dialogue : MonoBehaviour
 
             if(npcFace)
                 DialogueController.instance.SetNpcImage(npcFace);
+            else
+                DialogueController.instance.DisableNpcImage();
 
             current = dialogue.Dequeue();
             isSpeaking = true;
