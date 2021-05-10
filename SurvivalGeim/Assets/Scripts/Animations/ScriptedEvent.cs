@@ -1,3 +1,4 @@
+using InventorySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ public class ScriptedEvent : MonoBehaviour
     public void Init()
     {
         CameraFollow.instance.RefreshPosition();
+        if (InventoryManager.Instance)
+            InventoryManager.Instance.gameObject.SetActive(false);
         animator.SetTrigger("StartIntro");
         CameraFollow.instance.block = true;
         PlayerController.instance.block = true;
@@ -55,6 +58,8 @@ public class ScriptedEvent : MonoBehaviour
     {
         CameraFollow.instance.block = false;
         PlayerController.instance.block = false;
+        if (InventoryManager.Instance)
+            InventoryManager.Instance.gameObject.SetActive(true);
 
         IntroAudio.volume = 0.05f;
         Song.volume = 0.05f;
