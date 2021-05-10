@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     private float currentHealthRegen;
     private float currentManaRegen;
+    public bool isAlive = true;
     public Vector3 playerPos;
 
     void Awake()
@@ -53,9 +54,19 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeHealth(int health)
     {
+        if (!isAlive)
+            return;
+
         if(health < 0) StartCoroutine(HeroIcon.instance?.Injured());
         currentHealth += health;
+
         HealthBar.instance.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            isAlive = false;
+            PauseMenu.instance.ShowDeathScreen();
+        }
     }
 
     public void ChangeMana(int mana)

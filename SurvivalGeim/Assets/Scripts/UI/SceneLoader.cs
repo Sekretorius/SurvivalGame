@@ -79,6 +79,8 @@ public class SceneLoader : MonoBehaviour
         }
 
         PlayerController.instance.Unblock();
+        PlayerManager.instance.isAlive = true;
+        PlayerManager.instance.currentHealth = PlayerManager.instance.maxHealth;
         TopDownPlayerController.Instance.UnFreezeMovement();
         // Other controller movement unstop
 
