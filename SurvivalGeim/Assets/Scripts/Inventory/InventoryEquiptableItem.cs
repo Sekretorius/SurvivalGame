@@ -17,9 +17,5 @@ namespace InventorySystem
 
         public List<ItemEffect> Effects => effects;
         public EquiptableType EquiptableType => equiptableType;
-        public void Equipt()
-        {
-
-        }
     }
 }

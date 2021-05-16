@@ -22,6 +22,10 @@ public class PlayerManager : MonoBehaviour
     public bool isAlive = true;
     public Vector3 playerPos;
 
+    public int Armor = 0;
+    public float dodgeChance = 0;
+
+
     void Awake()
     {
         if (instance == null)
@@ -57,6 +61,15 @@ public class PlayerManager : MonoBehaviour
         if (!isAlive)
             return;
 
+        if(health < 0)
+        {
+            health += Armor;
+            if(UnityEngine.Random.Range(0, 100) < dodgeChance)
+            {
+                health /= 2;
+            }
+        }
+
         if(health < 0) StartCoroutine(HeroIcon.instance?.Injured());
         currentHealth += health;
 
@@ -84,11 +97,24 @@ public class PlayerManager : MonoBehaviour
 
     public void SetHealthRegen(float regen)
     {
+        healthRegen = regen;
         currentHealthRegen = regen;
     }
 
     public void SetManaRegen(float regen)
     {
+        manaRegen = regen;
         currentManaRegen = regen;
+    }
+
+    public void ChangeMaxMana(int value)
+    {
+        maxMana = value;
+        ManaBar.instance?.SetMaxMana(value);
+    }
+    public void ChangeMaxHealth(int value)
+    {
+        maxHealth = value;
+        HealthBar.instance?.SetMaxHealth(value);
     }
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: WaterCorner_LeftBottom
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 471650757745393356, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: 5210321064556848688, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: 5420271465488073396, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -3366090240278350157, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: 8388122402547049960, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -7890020490619348871, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -7200006773201088550, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -7163470506518918325, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: 738348083668419654, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: 1882836512275839460, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -142151586560069851, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  - {fileID: -763090082968096338, guid: 2b7bec67022e7d84e91b6ac933423948, type: 3}
+  m_MinSpeed: 3
+  m_MaxSpeed: 3
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 2

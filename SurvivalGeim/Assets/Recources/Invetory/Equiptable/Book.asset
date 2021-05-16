@@ -21,6 +21,6 @@ MonoBehaviour:
   layerMask: 10
   spriteSize: {x: 1, y: 1, z: 1}
   effects:
-  - effectType: 4
+  - effectType: 0
     effectValue: 20
-  equiptableType: 5
+  equiptableType: 1

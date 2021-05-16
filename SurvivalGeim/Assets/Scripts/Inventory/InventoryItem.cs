@@ -39,7 +39,7 @@ namespace InventorySystem
     }
 
 
-    public enum EffectType { Health, Mana, Speed, MeleeDamage, RangeDamage }
+    public enum EffectType { Health, Mana, Speed, MeleeDamage, RangeDamage, Armor, Dodge, ManaRegen, HealthRegen }
 
     [Serializable]
     public class ItemEffect
@@ -52,6 +52,7 @@ namespace InventorySystem
         public EffectType EffectType => effectType;
         public float EffectValue => effectValue;
 
+        //bad method not reusable...
         public void ApplyEffect()
         {
             if(PlayerManager.instance != null)

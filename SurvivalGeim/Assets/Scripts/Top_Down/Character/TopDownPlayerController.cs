@@ -177,6 +177,7 @@ public class TopDownPlayerController : TopDownMovementController
         {
             Interactable firstItem = interactables.First.Value;
             interactables.Remove(interactable);
+            interactable.OnInteractionRangeExit();
             if (firstItem == interactable)
             {
                 UpdateInteractableDistances();

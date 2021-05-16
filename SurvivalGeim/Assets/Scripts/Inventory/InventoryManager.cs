@@ -41,6 +41,15 @@ namespace InventorySystem
 
         [SerializeField]
         private bool isSavingEnabled = false;
+
+        //------------------------------------
+        [SerializeField]
+        private AudioSource audioSource;
+        [SerializeField]
+        private AudioClip actionSound;
+        //------------------------------------
+
+
         private void Awake()
         {
             if (Instance == null)
@@ -111,12 +120,6 @@ namespace InventorySystem
             if (PlayerController.instance != null)
             {
                 CheckInventoryUICollision(PlayerController.instance.gameObject.transform.position);
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                SaveData();
-                LoadData();
             }
         }
 
@@ -298,13 +301,18 @@ namespace InventorySystem
                             selectedEquiptableSlotId = slotId;
                             equiptableItemSlots[slotId].SetSelection(true);
                         }
-                        else
+                        else if (equiptableItemSlots[selectedEquiptableSlotId].InventoryItem != null)
                         {
+                            //--------------------------------------- remove item effects
                             if (equiptableItemSlots[selectedEquiptableSlotId].InventoryItem != null)
                             {
-                                AddToInventory(equiptableItemSlots[selectedEquiptableSlotId].InventoryItem, equiptableItemSlots[selectedEquiptableSlotId].ItemCount);
-                                ReleaseSlot(equiptableItemSlots[selectedEquiptableSlotId]);
+                                audioSource.PlayOneShot(actionSound);
+                                RemoveItemStats((InventoryEquiptableItem)equiptableItemSlots[selectedEquiptableSlotId].InventoryItem);
                             }
+                            //---------------------------------------
+
+                            AddToInventory(equiptableItemSlots[selectedEquiptableSlotId].InventoryItem, equiptableItemSlots[selectedEquiptableSlotId].ItemCount);
+                            ReleaseSlot(equiptableItemSlots[selectedEquiptableSlotId]);
                         }
                         return;
                     }
@@ -334,6 +342,11 @@ namespace InventorySystem
                         {
                             ReleaseSlot(takenSlot);
                             Equipt((InventoryEquiptableItem)item, takenSlot);
+
+                            //-----------------
+                            audioSource.PlayOneShot(actionSound);
+                            AddItemStats((InventoryEquiptableItem)item);
+                            //-----------------
                         }
                     }
                 }
@@ -351,8 +364,7 @@ namespace InventorySystem
 
         public void Equipt(InventoryEquiptableItem item, InventorySlot releasedSlot)
         {
-            item.Equipt();
-
+            //item.Equipt();
             foreach (InventorySlot slot in equiptableItemSlots.Values)
             {
                 if(slot.EquiptableType == item.EquiptableType)
@@ -360,6 +372,10 @@ namespace InventorySystem
                     if(slot.InventoryItem != null)
                     {
                         releasedSlot.InventoryItem = slot.InventoryItem;
+                        //--------------------------------------- remove item effects
+                        audioSource.PlayOneShot(actionSound);
+                        RemoveItemStats((InventoryEquiptableItem)slot.InventoryItem);
+                        //---------------------------------------
                     }
                     slot.InventoryItem = item;
                     break;
@@ -389,6 +405,10 @@ namespace InventorySystem
 
         public void AddToInventory(InventoryItem inventoryItem, int amount)
         {
+            //---------------------------------------
+            audioSource.PlayOneShot(actionSound);
+            //--------------------------------------- 
+
             int firstFreeSlotId = inventoryItemSlots.Count;
 
             for(int i = 0; i < inventoryItemSlots.Keys.Count; i++)
@@ -418,6 +438,9 @@ namespace InventorySystem
         {
             if (inventorySlot.InventoryItem != null)
             {
+                //---------------
+                audioSource.PlayOneShot(actionSound);
+                //---------------
                 InventoryPickableItem pickableItem = Instantiate(itemDropPrefab).GetComponent<InventoryPickableItem>();
                 if (TopDownPlayerController.Instance != null)
                 {
@@ -441,5 +464,61 @@ namespace InventorySystem
         {
             inventorySlot.InventoryItem = null;
         }
+
+
+#region item effects
+        // Item effects 
+
+        private List<InventoryEquiptableItem> statsApplyied = new List<InventoryEquiptableItem>();
+        public void AddItemStats(InventoryEquiptableItem item)
+        {
+            if (PlayerManager.instance == null) return;
+            if (item != null)
+            {
+                foreach (ItemEffect itemEffect in item.Effects)
+                {
+                    ApplyEffectValue(itemEffect.EffectType, itemEffect.EffectValue);
+                }
+                statsApplyied.Add(item);
+            }
+        }
+        public void RemoveItemStats(InventoryEquiptableItem item)
+        {
+            if (PlayerManager.instance == null) return;
+            if (item != null)
+            {
+                foreach(ItemEffect itemEffect in item.Effects)
+                {
+                    ApplyEffectValue(itemEffect.EffectType, -itemEffect.EffectValue);
+                }
+                statsApplyied.Remove(item);
+            }
+        }
+
+        public void ApplyEffectValue(EffectType effectType, float value)
+        {
+            switch (effectType)
+            {
+                case EffectType.Health:
+                    PlayerManager.instance.ChangeMaxHealth((int)(PlayerManager.instance.maxHealth + value));
+                    break;
+                case EffectType.Mana:
+                    PlayerManager.instance.ChangeMaxMana((int)(PlayerManager.instance.maxMana + value));
+                    break;
+                case EffectType.Armor:
+                    PlayerManager.instance.Armor += (int)value;
+                    break;
+                case EffectType.Dodge:
+                    PlayerManager.instance.dodgeChance += value;
+                    break;
+                case EffectType.HealthRegen:
+                    PlayerManager.instance.SetHealthRegen(PlayerManager.instance.healthRegen + value);
+                    break;
+                case EffectType.ManaRegen:
+                    PlayerManager.instance.SetManaRegen(PlayerManager.instance.manaRegen + value);
+                    break;
+            }
+        }
+#endregion
     }
 }

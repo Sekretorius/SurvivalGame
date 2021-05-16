@@ -65,7 +65,7 @@ namespace InventorySystem
                     slotItemImage.enabled = true;
                     slotItemImage.sprite = value.ItemSprite;
                     slotItemImage.preserveAspect = true;
-                    itemCount += value.Amount;                   
+                    itemCount = value.CanBeStacked ? itemCount + value.Amount : value.Amount;          
                 }
                 else
                 {

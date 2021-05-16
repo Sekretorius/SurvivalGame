@@ -21,11 +21,20 @@ public class Coin : Interactable
     [SerializeField]
     private FadeAnimation fadeAnimation;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip audioClip;
     protected override void Start()
     {
         base.Start();
         fadeAnimation.SpriteRenderer = spriteRenderer;
         fadeAnimation.Init((IEnumerator enumerator) => { StartCoroutine(enumerator); });
+
+        if(audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,11 +44,21 @@ public class Coin : Interactable
         }
         if (collision.collider.name.Equals("Player"))
         {
+            audioSource.PlayOneShot(audioClip);
             int value = Random.Range(minValue, maxValue);
             PlayerManager.instance.ChangeMoney(value);
             IsInteracted = true;
-            fadeAnimation.OnAnimationEnd.AddListener(() => { Destroy(gameObject); });
+            fadeAnimation.OnAnimationEnd.AddListener(() => { StartCoroutine(DestroyAtSoundFinish()); });
             fadeAnimation.StartAnimation();
         }
+    }
+
+    private IEnumerator DestroyAtSoundFinish()
+    {
+        while (audioSource.isPlaying)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(gameObject);
     }
 }

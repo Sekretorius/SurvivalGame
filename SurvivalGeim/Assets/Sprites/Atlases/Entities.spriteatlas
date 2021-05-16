@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 756a27af15f3d97479565728339abb6a, type: 3}
     - {fileID: 102900000, guid: d7d936b3f589c5444843ec1071fc91ed, type: 3}
     - {fileID: 102900000, guid: 9d93466ff7224d546b1b6e9f90a26ab3, type: 3}
-    totalSpriteSurfaceArea: 306720
+    totalSpriteSurfaceArea: 306889
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -103,6 +103,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f9402642a8f2613438ef8fb2e68fce68, type: 3}
   - {fileID: 21300000, guid: 5b725b42710d7b647a6247a7f41b3093, type: 3}
   - {fileID: 21300000, guid: 8a331c428ec8d9b449e1fd7c33d2a677, type: 3}
+  - {fileID: 21300000, guid: 06c75f62bfa7baf448cfe4125b3fb942, type: 3}
   - {fileID: 21300000, guid: 2306d292149775040bd56ca27af06ec9, type: 3}
   - {fileID: 21300000, guid: d4033ac212b9d1246b1dcf796c3cde8c, type: 3}
   - {fileID: 21300000, guid: e69484139aef0d342b3d845a80df36b8, type: 3}
@@ -224,6 +225,7 @@ SpriteAtlas:
   - CrabMoving1
   - side0003
   - up0004
+  - face
   - side0006
   - up0003
   - down0003

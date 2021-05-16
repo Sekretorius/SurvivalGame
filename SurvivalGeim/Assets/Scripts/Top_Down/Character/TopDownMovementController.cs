@@ -12,7 +12,7 @@ public class TopDownMovementController : MonoBehaviour
     private float runSpeed = 3f;
 
     private const float colliderCheckOffset = .01f;
-    private BoxCollider2D boxCollider;
+    private Collider2D objectCollider;
     private float currentSpeed
     {
         get
@@ -31,7 +31,7 @@ public class TopDownMovementController : MonoBehaviour
 
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        objectCollider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
@@ -78,7 +78,7 @@ public class TopDownMovementController : MonoBehaviour
                 moveDirection = Vector2.ClampMagnitude(-raycastHit2D.normal * (projectionLength - colliderCheckOffset), distance);//-raycastHit2D.normal * (projectionLength - colliderCheckOffset);
             }
         }
-        if(moveDirection == Vector2.zero)
+        if(moveDirection != Vector2.zero)
         {
             UpdateOnMove();
         }
@@ -95,7 +95,7 @@ public class TopDownMovementController : MonoBehaviour
         collider2D.Cast(direction, contactFilter2D, results, distance);
         foreach (RaycastHit2D hit in results)
         {
-            if (hit.collider == boxCollider)
+            if (hit.collider == objectCollider)
             {
                 return hit;
             }
@@ -110,7 +110,7 @@ public class TopDownMovementController : MonoBehaviour
         contactFilter2D.layerMask = ~LayerMask.GetMask("Walkable");
         contactFilter2D.useLayerMask = true;
 
-        boxCollider.Cast(direction, contactFilter2D, results, distance);
+        objectCollider.Cast(direction, contactFilter2D, results, distance);
         foreach(RaycastHit2D hit in results)
         {
             if (hit)
