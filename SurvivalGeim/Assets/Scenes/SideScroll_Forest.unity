@@ -445,7 +445,7 @@ PrefabInstance:
     - target: {fileID: 3555255648967402462, guid: dcc3ad8d2dabfc64693830a75b1dd1f2, type: 3}
       propertyPath: UI
       value: 
-      objectReference: {fileID: 182936532}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcc3ad8d2dabfc64693830a75b1dd1f2, type: 3}
 --- !u!1 &107652103
@@ -548,23 +548,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5575068874557057363, guid: e288e1bc8e2f0ed41bad3cb713c33f82, type: 3}
   m_PrefabInstance: {fileID: 1979195541}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &182936531 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8071581211393260283, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
-  m_PrefabInstance: {fileID: 4804061192222462940}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &182936532
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182936531}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &199191450
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,11 +967,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422eda75f1219f34f8a106403cc75008, type: 3}
---- !u!1 &410306657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8451994345578921209, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
-  m_PrefabInstance: {fileID: 442109664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &442109664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4172,7 +4150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 199191452}
-  canvas: {fileID: 182936532}
+  canvas: {fileID: 0}
   start: 1
   target: {fileID: 587907240}
 --- !u!114 &2128448817
@@ -4231,10 +4209,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1132111999, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
-      propertyPath: skill
-      value: 
-      objectReference: {fileID: 410306657}
     - target: {fileID: 6043203239990231730, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
