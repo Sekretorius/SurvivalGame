@@ -1958,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4920178776431619034, guid: edd4c393383a39f4cb250ca51dda48a7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4920178776431619034, guid: edd4c393383a39f4cb250ca51dda48a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5144,7 +5144,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7312021913446529026, guid: 302852d4ce19e6c489075d29d51ea964, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7312021913446529026, guid: 302852d4ce19e6c489075d29d51ea964, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32077,16 +32077,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDropDatas:
-  - dropChance: 0.025
-    item: {fileID: 11400000, guid: b32cf8c2ba4bc144b8cd36d67382f8af, type: 2}
-  - dropChance: 0.077
-    item: {fileID: 11400000, guid: b33d47f272b8f394b9210378103a43ce, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: 106e925361b0bd9488de2ef9b833dccf, type: 2}
+  - dropChance: 0.01
+    item: {fileID: 11400000, guid: bc091f2d0ecda6340815010e288001b5, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: c3b7e73f21989c049b57bfbf9f435d76, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: 7b84aec35c9f062449a23fa76aca142c, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: ed37c275793a1ff428a6cfd6e03c5c1e, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: eda5dcbae83a9ba41a2c086492ba1c61, type: 2}
   - dropChance: 1
-    item: {fileID: 11400000, guid: 3d00a6ddf7261e047af6a336f55471ea, type: 2}
+    item: {fileID: 11400000, guid: 2ec0e9ed50e52be408452d8d344d5136, type: 2}
   maxItemDropCount: 2
-  maxOneItemDropAmount: 20
+  maxOneItemDropAmount: 1
   dropItemPrefab: {fileID: 6249334598506991594, guid: 681c8655bbb7f3d4da21c7b7de897dfd, type: 3}
-  coinPrefab: {fileID: 0}
+  coinPrefab: {fileID: 5698153007828895317, guid: 2f9302b7e109e8f458cbe7222053e3c2, type: 3}
 --- !u!1001 &3652261428285261236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32294,7 +32302,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7312021913446529026, guid: 302852d4ce19e6c489075d29d51ea964, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7312021913446529026, guid: 302852d4ce19e6c489075d29d51ea964, type: 3}
       propertyPath: m_LocalPosition.x
