@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class ManaBar : MonoBehaviour
@@ -8,7 +9,7 @@ public class ManaBar : MonoBehaviour
 
   public Slider slider;
   public Image fill;
-  public Text manaText;
+  public TextMeshProUGUI manaText;
 
   void Awake()
   {
