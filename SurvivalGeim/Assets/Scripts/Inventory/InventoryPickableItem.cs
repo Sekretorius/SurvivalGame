@@ -78,7 +78,26 @@ namespace InteractionSystem
 
             itemCollider = gameObject.AddComponent<BoxCollider2D>();
         }
+        //
+        public void SetDataSideScroller(InventoryItem inventoryItem, int count)
+        {
+            if (inventoryItem == null) return;
 
+            inventoryItemData = inventoryItem;
+            itemSprite.sprite = inventoryItem.ItemSprite;
+            if (inventoryItem.Interactable)
+            {
+                gameObject.tag = "Interactable";
+            }
+
+            int layer = inventoryItem.LayerMask;
+            gameObject.layer = layer;
+            if (inventoryItem.CanBeStacked)
+            {
+                itemAmount = count;
+            }
+        }
+        //
         public void MoveTo(Vector3 end)
         {
             transformAnimation = new TransformAnimation(transform, .1f, end);

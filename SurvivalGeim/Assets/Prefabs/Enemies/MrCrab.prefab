@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3183960712600654719}
   - component: {fileID: 3183960712600654718}
   - component: {fileID: 3183960712600654689}
+  - component: {fileID: 4933837479632895511}
   m_Layer: 9
   m_Name: MrCrab
   m_TagString: Enemy
@@ -192,6 +193,29 @@ MonoBehaviour:
   sprite: {fileID: 3183960713501000813}
   animator: {fileID: 3183960713501000814}
   particles: {fileID: 788073660416529813}
+  entityDropManager: {fileID: 0}
+--- !u!114 &4933837479632895511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183960712600654688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9addd636bd096468b0633ea8b2ee73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDropDatas:
+  - dropChance: 0.025
+    item: {fileID: 11400000, guid: b32cf8c2ba4bc144b8cd36d67382f8af, type: 2}
+  - dropChance: 0.077
+    item: {fileID: 11400000, guid: b33d47f272b8f394b9210378103a43ce, type: 2}
+  - dropChance: 1
+    item: {fileID: 11400000, guid: 3d00a6ddf7261e047af6a336f55471ea, type: 2}
+  maxItemDropCount: 2
+  maxOneItemDropAmount: 20
+  dropItemPrefab: {fileID: 6249334598506991594, guid: 681c8655bbb7f3d4da21c7b7de897dfd, type: 3}
 --- !u!1 &3183960713501000785
 GameObject:
   m_ObjectHideFlags: 0

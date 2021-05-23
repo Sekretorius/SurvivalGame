@@ -62,6 +62,9 @@ public class Enemy : MonoBehaviour
 
     public ParticleSystem particles;
 
+    [SerializeField]
+    private EntityDropManager entityDropManager;
+
     float JHeight = 0;
     bool knocked = false;
 
@@ -72,6 +75,9 @@ public class Enemy : MonoBehaviour
 
         if (body == null)
             body = gameObject.GetComponent<Rigidbody2D>();
+
+        if(entityDropManager == null)
+            entityDropManager = gameObject.GetComponent<EntityDropManager>();
 
     }
 
@@ -141,7 +147,10 @@ public class Enemy : MonoBehaviour
         health -= damageTaken;
 
         if (health <= 0)
+        {
+            entityDropManager?.Drop();
             Destroy(gameObject);
+        }
 
         StartCoroutine(Injured());
 
@@ -254,4 +263,5 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawWireSphere(enemyPos, attackRange);
         }
     }
+
 }

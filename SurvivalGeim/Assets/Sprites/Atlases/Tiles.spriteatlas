@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 5ec0104bc27f9f843b770f8a0feb81d6, type: 3}
     - {fileID: 102900000, guid: 269493a7c1900054d9e44c951e6fecbf, type: 3}
     - {fileID: 102900000, guid: 12509f374774f4c44bde8faea45079e5, type: 3}
-    totalSpriteSurfaceArea: 1506863
+    totalSpriteSurfaceArea: 1539494
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -1051,6 +1051,7 @@ SpriteAtlas:
   - {fileID: -2751048348487222312, guid: e71699bb0ff1576438b1023d42633427, type: 3}
   - {fileID: 8662384261516989540, guid: 667780eba8b0a214394f62478faebc1f, type: 3}
   - {fileID: 8361171416893098218, guid: 430a923c3bdf34449a3486166e63db1b, type: 3}
+  - {fileID: 21300000, guid: fc5d2e5ec99316848bc486df15035f8c, type: 3}
   - {fileID: -2971200477280035582, guid: de2f6abe98f64db408f17a8a17993391, type: 3}
   - {fileID: 8998304892480942260, guid: de2f6abe98f64db408f17a8a17993391, type: 3}
   - {fileID: -31491586788738608, guid: de2f6abe98f64db408f17a8a17993391, type: 3}
@@ -2424,6 +2425,7 @@ SpriteAtlas:
   - Background_Tiles_38
   - rope_0
   - pebble_0
+  - Seagull
   - kb_dark_alphanumeric_24
   - kb_dark_alphanumeric_32
   - kb_dark_alphanumeric_25

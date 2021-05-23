@@ -30,6 +30,10 @@ namespace InventorySystem
 
         [SerializeField]
         private GameObject itemDropPrefab;
+        //-----------------------------------
+        [SerializeField]
+        private GameObject itemDropPrefabSideScroller;
+        //-----------------------------------
 
         private Dictionary<int, InventorySlot> inventoryItemSlots = new Dictionary<int, InventorySlot>();
         private Dictionary<int, InventorySlot> equiptableItemSlots = new Dictionary<int, InventorySlot>();
@@ -441,21 +445,25 @@ namespace InventorySystem
                 //---------------
                 audioSource.PlayOneShot(actionSound);
                 //---------------
-                InventoryPickableItem pickableItem = Instantiate(itemDropPrefab).GetComponent<InventoryPickableItem>();
                 if (TopDownPlayerController.Instance != null)
                 {
-                    if(inventorySlot.InventoryItem.LayerMask == 10)
+                    InventoryPickableItem pickableItem = Instantiate(itemDropPrefab).GetComponent<InventoryPickableItem>();
+                    if (inventorySlot.InventoryItem.LayerMask == 10)
                     {
                         //to do: find empty position from player position
                         pickableItem.transform.position = TopDownPlayerController.Instance.transform.position;
                     }
+                    pickableItem.SetData(inventorySlot.InventoryItem, inventorySlot.ItemCount);
                 }
                 else if (PlayerController.instance != null)
                 {
+                    InventoryPickableItem pickableItem = Instantiate(itemDropPrefabSideScroller).GetComponent<InventoryPickableItem>();
+                    pickableItem.transform.position = PlayerController.instance.transform.position;
+                    pickableItem.SetDataSideScroller(inventorySlot.InventoryItem, inventorySlot.ItemCount);
                     //to do: ??? drop item in side scroller
                     //pickableItem.transform.position = PlayerController.instance.transform.position;
                 }
-                pickableItem.SetData(inventorySlot.InventoryItem, inventorySlot.ItemCount);
+                
                 ReleaseSlot(inventorySlot);
             }
         }
