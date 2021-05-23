@@ -23,12 +23,12 @@ public class EntityDropManager : MonoBehaviour
 
     public void Drop()
     {
-        float dropChance = UnityEngine.Random.Range(0.01f, 1f);
+        float dropChance = UnityEngine.Random.Range(0f, 1f);
         List<ItemDropData> openList = new List<ItemDropData>();
 
         foreach(ItemDropData dropData in itemDropDatas)
         {
-            if(dropData.DropChance >= dropChance)
+            if(dropData.DropChance > dropChance || dropData.DropChance == 1)
             {
                 openList.Add(dropData);
             }

@@ -1232,15 +1232,23 @@ PrefabInstance:
       objectReference: {fileID: 6249334598506991594, guid: 681c8655bbb7f3d4da21c7b7de897dfd, type: 3}
     - target: {fileID: 14819993516366137, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: itemDropDatas.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 14819993516366137, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: itemDropDatas.Array.data[0].item
       value: 
       objectReference: {fileID: 11400000, guid: ad5a4e8eaaae18046898bc4ccb1c3169, type: 2}
     - target: {fileID: 14819993516366137, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: itemDropDatas.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 959aaae862e824b4b9ea4c6f0c9115c3, type: 2}
+    - target: {fileID: 14819993516366137, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: itemDropDatas.Array.data[0].dropChance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14819993516366137, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: itemDropDatas.Array.data[1].dropChance
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712364971241, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_SortingOrder

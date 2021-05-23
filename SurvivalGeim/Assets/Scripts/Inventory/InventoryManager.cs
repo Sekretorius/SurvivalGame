@@ -305,6 +305,12 @@ namespace InventorySystem
                     }
                 }
             }
+
+            if (!palyerInvetoryView.activeInHierarchy)
+            {
+                return;
+            }
+
             foreach (int slotId in equiptableItemSlots.Keys)
             {
                 if (equiptableItemSlots[slotId] != null)

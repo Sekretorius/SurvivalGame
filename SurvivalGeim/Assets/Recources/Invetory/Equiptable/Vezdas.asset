@@ -20,5 +20,7 @@ MonoBehaviour:
   isPicked: 1
   layerMask: 10
   spriteSize: {x: 1, y: 1, z: 1}
-  effects: []
+  effects:
+  - effectType: 0
+    effectValue: 10
   equiptableType: 1

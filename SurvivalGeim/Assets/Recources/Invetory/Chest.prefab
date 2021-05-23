@@ -172,8 +172,6 @@ MonoBehaviour:
   dropableItems:
   - {fileID: 11400000, guid: 3d00a6ddf7261e047af6a336f55471ea, type: 2}
   - {fileID: 11400000, guid: 16f1a5122bf72614e99b9116e5447a11, type: 2}
-  - {fileID: 11400000, guid: b33d47f272b8f394b9210378103a43ce, type: 2}
-  - {fileID: 11400000, guid: 9bcbd2fc1eae78c41a717af4bb47f6a8, type: 2}
   - {fileID: 11400000, guid: b32cf8c2ba4bc144b8cd36d67382f8af, type: 2}
   maxDropCount: 2
   canDropCoin: 1

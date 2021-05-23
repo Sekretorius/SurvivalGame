@@ -258,10 +258,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9addd636bd096468b0633ea8b2ee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropDatas: []
+  itemDropDatas:
+  - dropChance: 0.001
+    item: {fileID: 11400000, guid: 7b2a65fe40b65f14db02b6608c3131b5, type: 2}
+  - dropChance: 0.001
+    item: {fileID: 11400000, guid: e9a7daba85a86b749bd11cd785d5006b, type: 2}
+  - dropChance: 0.001
+    item: {fileID: 11400000, guid: 123a31d6c1c2ebd4180782ba00b63b49, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: 7b84aec35c9f062449a23fa76aca142c, type: 2}
+  - dropChance: 0.005
+    item: {fileID: 11400000, guid: ed37c275793a1ff428a6cfd6e03c5c1e, type: 2}
+  - dropChance: 0.001
+    item: {fileID: 11400000, guid: 0b8a741b38f8e744992aff422bbbf9b7, type: 2}
+  - dropChance: 0.001
+    item: {fileID: 11400000, guid: 959aaae862e824b4b9ea4c6f0c9115c3, type: 2}
   maxItemDropCount: 1
-  maxOneItemDropAmount: 0
-  dropItemPrefab: {fileID: 0}
+  maxOneItemDropAmount: 1
+  dropItemPrefab: {fileID: 6249334598506991594, guid: 681c8655bbb7f3d4da21c7b7de897dfd, type: 3}
   coinPrefab: {fileID: 5698153007828895317, guid: 2f9302b7e109e8f458cbe7222053e3c2, type: 3}
 --- !u!1 &3183960713501000785
 GameObject:
