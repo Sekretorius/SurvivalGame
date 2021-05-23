@@ -35,7 +35,7 @@ public class Haste : MonoBehaviour, Skill
         myTime -= Time.deltaTime;
         if (myTime <= 0)
         {
-            if (Input.GetKeyDown(keyCode))
+            if (Input.GetKeyDown(keyCode) && !active)
             {
                 StartCoroutine(SetPlayerSpeed());
             }

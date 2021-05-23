@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using InteractionSystem;
+using UnityEngine.SceneManagement;
 
 namespace InventorySystem
 {
@@ -33,6 +34,8 @@ namespace InventorySystem
         //-----------------------------------
         [SerializeField]
         private GameObject itemDropPrefabSideScroller;
+        [SerializeField]
+        private GameObject inventoryField;
         //-----------------------------------
 
         private Dictionary<int, InventorySlot> inventoryItemSlots = new Dictionary<int, InventorySlot>();
@@ -60,12 +63,26 @@ namespace InventorySystem
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }
             else
             {
                 Destroy(gameObject);
             }
         }
+
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            if (arg0.name == "Menu")
+            {
+                inventoryField.SetActive(false);
+            }
+            else
+            {
+                inventoryField.SetActive(true);
+            }
+        }
+
         private void Start()
         {
             for (int i = 0; i < inventorySlots.Count; i++)
@@ -412,6 +429,35 @@ namespace InventorySystem
             //---------------------------------------
             audioSource.PlayOneShot(actionSound);
             //--------------------------------------- 
+
+            //---------------------------------------------------------------------------------- 
+            if (inventoryItem is InventorySkillItem)
+            {
+                InventorySkillItem skill = (InventorySkillItem)inventoryItem;
+                switch (skill.SkillT)
+                {
+                    case InventorySkillItem.SkillType.Projectile:
+                        if (PlayerManager.instance.AddProjectile(skill.SkillPrefab))
+                        {
+                            if (SkillsBar.Instance != null)
+                            {
+                                ProjectilesBar.Instance.Init();
+                            }
+                        }
+                        break;
+                    case InventorySkillItem.SkillType.Skill:
+                        if (PlayerManager.instance.AddSkill(skill.SkillPrefab))
+                        {
+                            if (SkillsBar.Instance != null)
+                            {
+                                SkillsBar.Instance.Init();
+                            }
+                        }
+                        break;
+                }
+                return;
+            }
+            //------------------------------------------ --------------------------------------- 
 
             int firstFreeSlotId = inventoryItemSlots.Count;
 

@@ -5,13 +5,26 @@ using UnityEngine.UI;
 
 public class ProjectilesBar : MonoBehaviour
 {
+    public static ProjectilesBar Instance { get; private set; }
     public Transform slotTemplate;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         var projectiles = PlayerManager.instance.projectiles;
-        for (int i = 0; i < projectiles.Length; i++)
+        for (int i = 0; i < projectiles.Count; i++)
         {
             var proj = projectiles[i].GetComponent<Projectile>();
             var sprite = proj.barSprite;
@@ -26,6 +39,5 @@ public class ProjectilesBar : MonoBehaviour
             projSlotRectTransform.Find("Background").Find("Image").GetComponent<Image>().sprite = sprite;
             projSlotRectTransform.Find("Background").Find("ButtonKey").GetComponent<TMPro.TextMeshProUGUI>().text = keyText;
         }
-
     }
 }

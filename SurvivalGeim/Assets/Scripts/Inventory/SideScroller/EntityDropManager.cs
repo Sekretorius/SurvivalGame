@@ -18,6 +18,9 @@ public class EntityDropManager : MonoBehaviour
     [SerializeField]
     private GameObject dropItemPrefab;
 
+    [SerializeField]
+    private GameObject coinPrefab;
+
     public void Drop()
     {
         float dropChance = UnityEngine.Random.Range(0.01f, 1f);
@@ -31,8 +34,9 @@ public class EntityDropManager : MonoBehaviour
             }
         }
 
-        int dropCount = UnityEngine.Random.Range(1, openList.Count + 1 > maxItemDropCount ? maxItemDropCount : openList.Count + 1);
-        for(int i = 0; i < dropCount; i++)
+        int dropCount = UnityEngine.Random.Range(1, maxItemDropCount);
+        dropCount = dropCount > openList.Count ? openList.Count : dropCount;
+        for (int i = 0; i < dropCount; i++)
         {
             int dropItemId = UnityEngine.Random.Range(0, openList.Count);
             int itemDropCount = UnityEngine.Random.Range(1, maxOneItemDropAmount);
@@ -46,6 +50,8 @@ public class EntityDropManager : MonoBehaviour
 
             openList.Remove(itemDrop);
         }
+        GameObject coin = Instantiate(coinPrefab);
+        coin.transform.position = transform.position;
     }
 
     [Serializable]

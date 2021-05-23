@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     float JHeight = 0;
     bool knocked = false;
-
+    bool isDead = false;
     public void Awake()
     {
         if (boxCollider == null)
@@ -145,9 +145,13 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Triggered", triggered);
 
         health -= damageTaken;
-
+        if (isDead)
+        {
+            return;
+        }
         if (health <= 0)
         {
+            isDead = true;
             entityDropManager?.Drop();
             Destroy(gameObject);
         }

@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCollider: {fileID: 0}
   minValue: 1
-  maxValue: 50
+  maxValue: 3
   spriteRenderer: {fileID: 437904050290565987}
   rect: {fileID: 0}
   fadeAnimation:

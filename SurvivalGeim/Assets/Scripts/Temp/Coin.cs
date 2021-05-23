@@ -38,11 +38,20 @@ public class Coin : Interactable
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        Interaction(collision.gameObject.tag);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Interaction(collision.gameObject.tag);
+    }
+    private void Interaction(string tag)
+    {
         if (IsInteracted)
         {
             return;
         }
-        if (collision.collider.name.Equals("Player"))
+        if (tag.Equals("Player"))
         {
             audioSource.PlayOneShot(audioClip);
             int value = Random.Range(minValue, maxValue);
@@ -52,7 +61,6 @@ public class Coin : Interactable
             fadeAnimation.StartAnimation();
         }
     }
-
     private IEnumerator DestroyAtSoundFinish()
     {
         while (audioSource.isPlaying)

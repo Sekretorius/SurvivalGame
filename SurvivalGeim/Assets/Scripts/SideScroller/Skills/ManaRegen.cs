@@ -34,7 +34,7 @@ public class ManaRegen : MonoBehaviour, Skill
         myTime -= Time.deltaTime;
         if (myTime <= 0)
         {
-            if (Input.GetKeyDown(keyCode))
+            if (Input.GetKeyDown(keyCode) && !active)
             {
                 StartCoroutine(SetManaRegen());                
             }
@@ -46,7 +46,7 @@ public class ManaRegen : MonoBehaviour, Skill
         active = true;
         PlayerManager.instance.SetManaRegen(PlayerManager.instance.manaRegen * manaRegenMultiplier);
         yield return new WaitForSeconds(duration);
-        PlayerManager.instance.SetManaRegen(PlayerManager.instance.manaRegen);
+        PlayerManager.instance.SetManaRegen(PlayerManager.instance.manaRegen / manaRegenMultiplier);
         active = false;
         myTime = cooldown;
     }

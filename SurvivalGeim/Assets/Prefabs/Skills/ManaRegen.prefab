@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b5f91ea28a8904dbaa583e45df42ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 113
+  keyCode: 51
   manaRegenMultiplier: 10
   duration: 10
   cooldown: 10

@@ -23,7 +23,7 @@ namespace InventorySystem
         private bool isPicked = false;
         [SerializeField]
         [Min(0)]
-        private int layerMask;
+        private int layerMask = 10;
 
         [SerializeField]
         private Vector3 spriteSize = Vector3.one;

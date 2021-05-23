@@ -974,6 +974,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1558574157, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
+      propertyPath: projectiles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 134659730789146776, guid: 2775ddaff9d844d4caea83081de4953b, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -1528,6 +1532,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+--- !u!1 &821003992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3183960712600654688, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+  m_PrefabInstance: {fileID: 821003991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &821003993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821003992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9addd636bd096468b0633ea8b2ee73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDropDatas:
+  - dropChance: 1
+    item: {fileID: 11400000, guid: ad5a4e8eaaae18046898bc4ccb1c3169, type: 2}
+  maxItemDropCount: 1
+  maxOneItemDropAmount: 1
+  dropItemPrefab: {fileID: 6249334598506991594, guid: 681c8655bbb7f3d4da21c7b7de897dfd, type: 3}
 --- !u!1 &829272908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1651,14 @@ PrefabInstance:
     - target: {fileID: 3183960712600654688, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183960712600654689, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183960712600654689, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_RootOrder
@@ -2317,6 +2352,14 @@ PrefabInstance:
     - target: {fileID: 3183960712600654688, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183960712600654689, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183960712600654689, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_RootOrder

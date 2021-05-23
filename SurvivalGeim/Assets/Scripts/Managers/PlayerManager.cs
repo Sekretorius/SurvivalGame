@@ -14,8 +14,9 @@ public class PlayerManager : MonoBehaviour
     public float currentMana;
     public float healthRegen = 1f;
     public float manaRegen = 2f;
-    public GameObject[] projectiles;
-    public GameObject[] skills;
+
+    public List<GameObject> projectiles;
+    public List<GameObject> skills;
 
     private float currentHealthRegen;
     private float currentManaRegen;
@@ -25,7 +26,36 @@ public class PlayerManager : MonoBehaviour
     public int Armor = 0;
     public float dodgeChance = 0;
 
-
+    public bool AddProjectile(GameObject projectile)
+    {
+        if (!projectiles.Contains(projectile))
+        {
+            projectiles.Add(projectile);
+            if (PlayerProjectiles.Instance != null)
+            {
+                PlayerProjectiles.Instance.AddProjectile(projectile);
+            }
+            return true;
+        }
+        return false;
+    }
+    public bool AddSkill(GameObject skill)
+    {
+        foreach(GameObject skillT in skills)
+        {
+            if(skillT.name == skill.name)
+            {
+                return false;
+            }
+        }
+        GameObject skillInstance = Instantiate(skill, transform);
+        skills.Add(skillInstance);
+        if (PlayerSkills.Instance != null)
+        {
+            PlayerSkills.Instance.AddSkill(skillInstance);
+        }
+        return true;
+    }
     void Awake()
     {
         if (instance == null)
