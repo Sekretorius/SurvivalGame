@@ -421,7 +421,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2906307108516327364}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.03, y: -2.21, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -555,7 +555,7 @@ MonoBehaviour:
   punches: {fileID: 2021171177}
   punchStrengh: 2
   particles: {fileID: 8516403280889361994}
-  maxBounce: 3
+  maxBounce: 2
 --- !u!114 &4037900809532290471
 MonoBehaviour:
   m_ObjectHideFlags: 0

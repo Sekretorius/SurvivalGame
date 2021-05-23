@@ -12,16 +12,17 @@ public class Speakable : Interactable
     public bool forceTalk = false;
     public bool destroyAfter = false;
     public bool playerMovement = true;
+
     public override void Interact()
     {
-        if (dialogue || forceTalk)
+        if ( dialogue && isInRange)
         {
             if (dialogue.isSpeaking)
+            {
                 dialogue.Next();
+            }
             else
             {
-                forceTalk = false;
-
                 DialogueController.instance.Enable();
                 dialogue.StartDialogue();
 
@@ -35,6 +36,18 @@ public class Speakable : Interactable
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        isInRange = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isInRange = false;
+        OnInteractionRangeExit();
+    }
+
     public override void OnInteractionRangeExit()
     {
         if (dialogue.isSpeaking)

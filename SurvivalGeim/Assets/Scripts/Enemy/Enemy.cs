@@ -50,6 +50,9 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer healthBar;
 
     [SerializeField]
+    public GameObject status;
+
+    [SerializeField]
     public BoxCollider2D boxCollider;
 
     [SerializeField]
@@ -141,6 +144,9 @@ public class Enemy : MonoBehaviour
 
     public void ReduceHealth(float damageTaken)
     {
+        if (!status.activeSelf)
+            status.SetActive(true);
+
         triggered = true;
         animator.SetBool("Triggered", triggered);
 

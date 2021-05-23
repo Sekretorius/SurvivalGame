@@ -41,7 +41,11 @@ public class ScriptedIntro : MonoBehaviour
         if (InventoryManager.Instance)
             InventoryManager.Instance.gameObject.SetActive(true);
 
+        canvas.alpha = 1;
+
+        SideScrollerPickableManager.Instance.JoinInteractableQueue(target);
         target.isInRange = true;
         target.forceTalk = true;
+        target.Interact();
     }
 }
