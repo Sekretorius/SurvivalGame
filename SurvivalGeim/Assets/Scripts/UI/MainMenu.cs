@@ -12,8 +12,11 @@ public class MainMenu : MonoBehaviour
   }
   public void PlayGame() 
   {
-    SceneManager.LoadScene("Main", LoadSceneMode.Single);
-  }
+    if(PlayerManager.instance)
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+    else
+        SceneManager.LoadScene("Intro", LoadSceneMode.Single);
+    }
   
   public void QuitGame() 
   {
