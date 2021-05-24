@@ -188,6 +188,7 @@ MonoBehaviour:
   maxHealth: 10
   health: 10
   healthBar: {fileID: 3183960712364971241}
+  status: {fileID: 3183960713701410481}
   boxCollider: {fileID: 3183960712600654719}
   body: {fileID: 3183960712600654718}
   sprite: {fileID: 3183960713501000813}
@@ -453,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3183960713701410510
 Transform:
   m_ObjectHideFlags: 0

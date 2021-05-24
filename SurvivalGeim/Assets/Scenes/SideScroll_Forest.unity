@@ -585,11 +585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.64
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -729,7 +729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 963285309086645708, guid: 422eda75f1219f34f8a106403cc75008, type: 3}
       propertyPath: dialogueList.Array.data[0].lines.Array.data[0]
-      value: ...
+      value: I want to go back
       objectReference: {fileID: 0}
     - target: {fileID: 4203401279259049962, guid: 422eda75f1219f34f8a106403cc75008, type: 3}
       propertyPath: m_Name
@@ -1463,11 +1463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -8.34
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.71
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1511,6 +1511,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
+--- !u!225 &904684817 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2356787540188486848, guid: cd50275dccbd01f4d867bfe1c6173b6f, type: 3}
+  m_PrefabInstance: {fileID: 4804061192222462940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &908897498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,11 +2099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.43
+      value: -17.18
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.71
+      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 3183960712600654714, guid: fcb7e519dc8c3014581cebcd57c4028b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2312,7 +2317,7 @@ Canvas:
   m_GameObject: {fileID: 1551436208}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2092810753}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -3827,7 +3832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 199191452}
-  canvas: {fileID: 0}
+  canvas: {fileID: 904684817}
   start: 1
   target: {fileID: 587907240}
 --- !u!114 &2128448817
