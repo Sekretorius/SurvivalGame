@@ -24,7 +24,7 @@ public class Speakable : Interactable
             else
             {
                 DialogueController.instance.Enable();
-                dialogue.StartDialogue();
+                dialogue.StartDialogue(destroyAfter);
 
                 if (!playerMovement)
                 {
@@ -53,8 +53,12 @@ public class Speakable : Interactable
         if (dialogue.isSpeaking)
         {
             dialogue.EndDialogue();
-            if (destroyAfter)
-                Destroy(this);
         }
+    }
+
+    public void Destroy()
+    {
+        if (destroyAfter)
+            Destroy(this);
     }
 }

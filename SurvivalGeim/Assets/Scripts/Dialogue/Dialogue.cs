@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,6 +26,8 @@ public class Dialogue : MonoBehaviour
     [SerializeField]
     public Sprite npcFace;
 
+    public bool destroy = false;
+
     public bool isSpeaking = false;
 
     private bool turn;
@@ -41,8 +44,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    public void StartDialogue()
+    public void StartDialogue(bool destroyAfter = false)
     {
+        destroy = destroyAfter;
         Init();
         if (dialogue.Count > 0)
         {
@@ -104,9 +108,10 @@ public class Dialogue : MonoBehaviour
             TopDownPlayerController.Instance.UnFreezeMovement();
         else if(PlayerController.instance)
             PlayerController.instance.Unblock();
-
+     
         isSpeaking = false;
         DialogueController.instance.Disable();
+        Destroy(this);
     }
 
     private void ShowText()

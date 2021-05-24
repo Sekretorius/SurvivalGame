@@ -114,6 +114,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (triggered && Distance() > offset && !block && !knocked)
         {
             body.MovePosition(movement);
