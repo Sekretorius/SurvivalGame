@@ -450,7 +450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wrath of Aatrox
+  m_text: Wrath of Atrox
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a46588ec6692eea4a9d95e3250e826a7, type: 2}
   m_sharedMaterial: {fileID: -1286606727444937902, guid: a46588ec6692eea4a9d95e3250e826a7, type: 2}
@@ -1304,7 +1304,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 88347730c0e1f46419b8d78b393fd0d7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Laurynas . \t\t\t\t\t-\n\n"
+  m_text: "Laurynas V. \t\t\t\t\t-\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a46588ec6692eea4a9d95e3250e826a7, type: 2}
   m_sharedMaterial: {fileID: -1286606727444937902, guid: a46588ec6692eea4a9d95e3250e826a7, type: 2}
