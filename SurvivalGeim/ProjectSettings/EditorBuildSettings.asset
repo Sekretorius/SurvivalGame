@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SideScroll_Cave.unity
     guid: 40a037e3a56e64e4286d1bf0a6bca1ec
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 24ebbd2ea3030074694d3ac9d5b52104
   m_configObjects: {}

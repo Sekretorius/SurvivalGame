@@ -16,6 +16,8 @@ public class Enter : MonoBehaviour
 
     public bool showIntro = false;
 
+    public bool goToCredits = false;
+
     [DraggablePoint] public Vector3 SpawnPosition;
 
     void Awake()
@@ -25,7 +27,11 @@ public class Enter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canExit && collision.tag == "Player")
+        if (goToCredits && canExit && collision.tag == "Player")
+        {
+            SceneManager.LoadScene("Credits");
+        }
+        else if (canExit && collision.tag == "Player")
         {
             if (exit)
             {
