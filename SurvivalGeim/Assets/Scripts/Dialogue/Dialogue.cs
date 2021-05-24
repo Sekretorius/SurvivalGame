@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
@@ -27,6 +28,7 @@ public class Dialogue : MonoBehaviour
     public Sprite npcFace;
 
     public bool destroy = false;
+    public UnityEvent onDialogueEnd;
 
     public bool isSpeaking = false;
 
@@ -44,8 +46,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    public void StartDialogue(bool destroyAfter = false)
+    public void StartDialogue(bool destroyAfter = false, UnityEvent onEnd = null)
     {
+        onDialogueEnd = onEnd;
         destroy = destroyAfter;
         Init();
         if (dialogue.Count > 0)
@@ -92,7 +95,10 @@ public class Dialogue : MonoBehaviour
     public void Next()
     {
         if (dialogue.Count <= 0 && current.isFinished)
+        {
+            onDialogueEnd.Invoke();
             EndDialogue();
+        }
         else if (!current.isFinished)
             ShowText();
         else
@@ -111,7 +117,8 @@ public class Dialogue : MonoBehaviour
      
         isSpeaking = false;
         DialogueController.instance.Disable();
-        Destroy(this);
+        if(destroy)
+            Destroy(this);
     }
 
     private void ShowText()

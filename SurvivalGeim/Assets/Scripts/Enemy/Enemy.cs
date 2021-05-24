@@ -186,7 +186,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Punch") {
-            ReduceHealth(PlayerController.instance.punchStrengh);
+            ReduceHealth(PlayerManager.instance.punchStrengh);
             return;
         }
 

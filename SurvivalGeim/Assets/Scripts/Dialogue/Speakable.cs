@@ -1,7 +1,9 @@
 using InteractionSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Speakable : Interactable
 {
@@ -12,6 +14,8 @@ public class Speakable : Interactable
     public bool forceTalk = false;
     public bool destroyAfter = false;
     public bool playerMovement = true;
+
+    public UnityEvent onEnd;
 
     public override void Interact()
     {
@@ -24,7 +28,7 @@ public class Speakable : Interactable
             else
             {
                 DialogueController.instance.Enable();
-                dialogue.StartDialogue(destroyAfter);
+                dialogue.StartDialogue(destroyAfter, onEnd);
 
                 if (!playerMovement)
                 {

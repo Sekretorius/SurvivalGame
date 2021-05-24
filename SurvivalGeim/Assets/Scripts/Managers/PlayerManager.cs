@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public int Armor = 0;
     public float dodgeChance = 0;
+    public float punchStrengh = 2;
 
     public bool AddProjectile(GameObject projectile)
     {
@@ -146,5 +147,14 @@ public class PlayerManager : MonoBehaviour
     {
         maxHealth = value;
         HealthBar.instance?.SetMaxHealth(value);
+    }
+
+    public void EnableCheats()
+    {
+        maxHealth = 99999;
+        maxMana = 99999;
+        currentHealth = 99999;
+        currentMana = 99999;
+        punchStrengh = 15;
     }
 }
